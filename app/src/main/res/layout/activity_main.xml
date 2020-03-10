@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/btn_hello"
+        android:onClick="onHello"
+        android:background="@color/colorAccent"
+        android:text="@string/hello"/>
+
 </LinearLayout>
