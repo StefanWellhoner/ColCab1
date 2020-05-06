@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">ColCab</string>
-    <string name="hello">Hello</string>
+<!--    Navbar String Resources-->
+    <string name="nav_general">General</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_log_ticket">Log Ticket</string>
+    <string name="nav_view_schedule">View Schedule</string>
+    <string name="nav_view_closed">View Closed Tickets</string>
+    <string name="nav_exit">Exit</string>
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
 </resources>
