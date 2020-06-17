@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ColCab</string>
-
     <!--    Navbar String Resources-->
     <string name="nav_general">General</string>
     <string name="nav_home">Home</string>
@@ -10,7 +9,6 @@
     <string name="nav_exit">Exit</string>
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
-    <!--    Navbar String Resources-->
 
     <!--    LogTicketScreen String Resources-->
 
@@ -40,4 +38,28 @@
 
     <!--   //End of LogTicketScreen String Resources-->
 
+    //Home Page strings
+    <string name="btnLog">Log</string>
+    <string name="btnOpenTickets">Open Tickets</string>
+    <string name="btnClosedTicekts">Closed Tickets</string>
+    <string name="btnSchedule">Schedule</string>
+
+    //Closed Ticket Strings
+    <string name="lblRootCause">ROOT CAUSE</string>
+    <string name="lblCategorise">CATEGORIES</string>
+    <string name="lblStatus">Status</string>
+    <string name="lblOpen">Open</string>
+    <string name="lblScheduled">Scheduled</string>
+    <string name="lblClosed">Closed</string>
+
+    <string name="cbOpen">Open</string>
+    <string name="cbScheduled">Scheduled</string>
+    <string name="cbClosed">Closed</string>
+
+    <string-array name="spnClosedTickets">
+        <item>Category</item>
+        <item>test data 1</item>
+        <item>test data 2</item>
+        <item>test data 3</item>
+    </string-array>
 </resources>
