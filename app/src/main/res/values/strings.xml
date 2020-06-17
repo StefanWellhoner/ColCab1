@@ -10,7 +10,33 @@
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
 
+    <!--    LogTicketScreen String Resources-->
 
+        <!-- Labels of LogTicketScreen -->
+    <string name="log_logged_lbl">LOGGED</string>
+    <string name="log_customer_lbl">CUSTOMER</string>
+    <string name="log_warranty_lbl">WARRANTY</string>
+    <string name="log_serialNum_lbl">SERIAL No.</string>
+    <string name="log_caseModel_lbl">CASE MODEL</string>
+    <string name="log_caseDescription_lbl">CASE DESCRIPTION</string>
+    <string name="log_requestedBy_lbl">REQUESTED BY</string>
+    <string name="log_customerPO_lbl">CUSTOMER PO</string>
+
+        <!-- Text Inputs of LogTicketScreen -->
+    <string name="log_date_Text">YYDDMM</string>
+    <string name="log_customer_Text">Store e.g Spar</string>
+    <string-array name="log_status_Text">
+        <item>IN</item>
+        <item>OUT</item>
+        <item>UNKNOWN</item>
+    </string-array>
+    <string name="log_serialNum_Text">AAXXXXX-XX</string>
+    <string name="log_caseModel_Text">AAXXXXXX</string>
+    <string name="log_caseDescription_Text">DESCRIPTION...</string>
+    <string name="log_requestedBy_Text">Requested By: Position, Contact no... etc.</string>
+    <string name="log_customerPO_Text">CUSTOMER PO</string>
+
+    <!--   //End of LogTicketScreen String Resources-->
 
     //Home Page strings
     <string name="btnLog">Log</string>
