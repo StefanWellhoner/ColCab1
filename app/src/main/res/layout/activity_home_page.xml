@@ -8,10 +8,10 @@ android:id="@+id/drawer_layout"
 android:orientation="vertical"
 tools:context=".HomePage">
 
+    <!-- @TODO Fix background logo        -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/colcab_new_logo"
         tools:context=".HomePage">
 
         <include layout="@layout/toolbar_main"
@@ -21,74 +21,61 @@ tools:context=".HomePage">
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <Button
-                android:id="@+id/button7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:height="150dp"
+                android:id="@+id/btnLogTicket"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:alpha="0.85"
                 android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/colorWhite"
+                android:text="@string/btnLogTicket"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="onLogTicket"/>
+
+            <Button
+                android:id="@+id/btnOpenTickets"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:alpha="0.85"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/colorWhite"
+                android:text="@string/btnOpenTickets"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="onOpenTicket"/>
+
+            <Button
+                android:id="@+id/btnClosedTickets"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:alpha="0.85"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/colorWhite"
                 android:text="@string/btnClosedTicekts"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:onClick="onClosedTicket"/>
 
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:height="150dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:text="@string/btnOpenTickets"
-                android:layout_weight="1"
-                android:layout_margin="10dp"/>
-
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="0dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:height="150dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:text="@string/btnLog"
-                android:layout_weight="1"
-                android:layout_margin="10dp"/>
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:height="150dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:text="@string/btnSchedule"
-                android:layout_weight="1"
-                android:layout_margin="10dp"/>
-
-
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/site_logo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,6 +84,7 @@ tools:context=".HomePage">
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="start"
+    app:headerLayout="@layout/nav_header"
     app:menu="@menu/nav_menu"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
