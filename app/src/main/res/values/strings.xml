@@ -12,7 +12,7 @@
 
     <!--    LogTicketScreen String Resources-->
 
-        <!-- Labels of LogTicketScreen -->
+    <!-- Labels of LogTicketScreen -->
     <string name="log_logged_lbl">LOGGED</string>
     <string name="log_customer_lbl">CUSTOMER</string>
     <string name="log_warranty_lbl">WARRANTY</string>
@@ -22,40 +22,42 @@
     <string name="log_requestedBy_lbl">REQUESTED BY</string>
     <string name="log_customerPO_lbl">CUSTOMER PO</string>
 
-        <!-- Text Inputs of LogTicketScreen -->
+    <!-- Text Inputs of LogTicketScreen -->
     <string name="log_date_Text">YYDDMM</string>
     <string name="log_customer_Text">Store e.g Spar</string>
-    <string-array name="log_status_Text">
-        <item>IN</item>
-        <item>OUT</item>
-        <item>UNKNOWN</item>
-    </string-array>
     <string name="log_serialNum_Text">AAXXXXX-XX</string>
     <string name="log_caseModel_Text">AAXXXXXX</string>
     <string name="log_caseDescription_Text">DESCRIPTION &#8230;</string>
     <string name="log_requestedBy_Text">Requested By: Position, Contact no&#8230; etc.</string>
     <string name="log_customerPO_Text">CUSTOMER PO</string>
+    <string name="btnLogTicket">Log Ticket</string>
 
     <!--   //End of LogTicketScreen String Resources-->
 
     //Home Page strings
-    <string name="btnLogTicket">Log Ticket</string>
     <string name="btnOpenTickets">Open Tickets</string>
     <string name="btnClosedTicekts">Closed Tickets</string>
     <string name="btnScheduled">Scheduled</string>
+    <string name="lblRootCause">ROOT CAUSE</string>
 
     //Closed Ticket Strings
-    <string name="lblRootCause">ROOT CAUSE</string>
     <string name="lblCategorise">CATEGORIES</string>
     <string name="lblStatus">Status</string>
     <string name="lblOpen">Open</string>
     <string name="lblScheduled">Scheduled</string>
     <string name="lblClosed">Closed</string>
-
     <string name="cbOpen">Open</string>
+
     <string name="cbScheduled">Scheduled</string>
     <string name="cbClosed">Closed</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="log_status_Text">
+        <item>IN</item>
+        <item>OUT</item>
+        <item>UNKNOWN</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="spnClosedTickets">
         <item>Category</item>
         <item>test data 1</item>

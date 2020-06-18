@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +37,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     public void onOpenTicket(View view) {
-
+        Intent i = new Intent(this, ViewOpenTicketActivity.class);
+        startActivity(i);
     }
 
     public void onClosedTicket(View view) {
@@ -46,9 +48,13 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        Intent i;
         //@TODO insert intents for navigation
         switch (id){
             case R.id.nav_home:
+                i = new Intent(this,HomePage.class);
+                startActivity(i);
+                finish();
                 break;
             case R.id.nav_log_ticket:
                 break;
