@@ -31,6 +31,14 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    public void onLogTicket(View view) {
+
+    }
+
+    public void onOpenTicket(View view) {
+
+    }
+
     public void onClosedTicket(View view) {
 
     }

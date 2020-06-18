@@ -28,7 +28,31 @@ tools:context=".HomePage">
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/btnLogTicket"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:alpha="0.85"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/colorWhite"
+                android:text="@string/btnLogTicket"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="onLogTicket"/>
+
+            <Button
+                android:id="@+id/btnOpenTickets"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:alpha="0.85"
+                android:backgroundTint="@color/buttonColor"
+                android:textColor="@color/colorWhite"
+                android:text="@string/btnOpenTickets"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="onOpenTicket"/>
+
+            <Button
+                android:id="@+id/btnClosedTickets"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:alpha="0.85"
@@ -38,28 +62,6 @@ tools:context=".HomePage">
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:onClick="onClosedTicket"/>
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/colorWhite"
-                android:text="@string/btnOpenTickets"
-                android:layout_weight="1"
-                android:layout_margin="10dp"/>
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/colorWhite"
-                android:text="@string/btnLog"
-                android:layout_weight="1"
-                android:layout_margin="10dp"/>
 
         </LinearLayout>
 

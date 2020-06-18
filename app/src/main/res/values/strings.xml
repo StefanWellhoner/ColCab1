@@ -32,14 +32,14 @@
     </string-array>
     <string name="log_serialNum_Text">AAXXXXX-XX</string>
     <string name="log_caseModel_Text">AAXXXXXX</string>
-    <string name="log_caseDescription_Text">DESCRIPTION...</string>
-    <string name="log_requestedBy_Text">Requested By: Position, Contact no... etc.</string>
+    <string name="log_caseDescription_Text">DESCRIPTION &#8230;</string>
+    <string name="log_requestedBy_Text">Requested By: Position, Contact no&#8230; etc.</string>
     <string name="log_customerPO_Text">CUSTOMER PO</string>
 
     <!--   //End of LogTicketScreen String Resources-->
 
     //Home Page strings
-    <string name="btnLog">Log</string>
+    <string name="btnLogTicket">Log Ticket</string>
     <string name="btnOpenTickets">Open Tickets</string>
     <string name="btnClosedTicekts">Closed Tickets</string>
     <string name="btnScheduled">Scheduled</string>
