@@ -37,7 +37,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     public void onOpenTicket(View view) {
-        Intent i = new Intent(this, ViewOpenTicketActivity.class);
+        Intent i = new Intent(this, OpenTicketsActivity.class);
         startActivity(i);
     }
 

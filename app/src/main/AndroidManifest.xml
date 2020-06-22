@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewOpenTicketActivity"/>
+        <activity android:name=".OpenTicketsActivity"/>
+        <activity android:name=".ViewOpenTicketActivity" />
         <activity android:name=".LogTicketActivity" />
-        <activity android:name=".CloseTicketPage" />
         <activity android:name=".HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
