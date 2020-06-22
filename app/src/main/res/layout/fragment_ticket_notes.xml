@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TicketNotesFragment">
+    tools:context=".ViewOpenTicketActivity"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/strAddNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Notes"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.518" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/edtNotes"
+        android:layout_width="326dp"
+        android:layout_height="213dp"
+        android:layout_marginBottom="140dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Type here...."
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/btnNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnNotes"
+        android:layout_width="328dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="160dp"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
