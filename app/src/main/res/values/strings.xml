@@ -64,4 +64,18 @@
         <item>test data 2</item>
         <item>test data 3</item>
     </string-array>
+
+    <!--  fragment_ticket_admin String Resources-->
+    <string name="lblScheduleDate">Schedule Date</string>
+    <string name="lblContractor">Contractor</string>
+    <string name="dateDate">Date</string>
+    <string-array name="spnContractors">
+        <item>Choose Contractor</item>
+    </string-array>
+    <string name="txtContractorFullName">Full Name</string>
+    <string name="txtContractorCompany">Company</string>
+    <string name="txtContractorCountryRegion">Country/Region</string>
+    <string name="txtContractorCompanyNumber">Company Number</string>
+    <string name="txtContractorMobileNumber">Mobile Number</string>
+
 </resources>
