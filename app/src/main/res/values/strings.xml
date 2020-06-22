@@ -80,5 +80,21 @@
     <string name="txtContractorCountryRegion">Country/Region</string>
     <string name="txtContractorCompanyNumber">Company Number</string>
     <string name="txtContractorMobileNumber">Mobile Number</string>
+    //Edit open Tickets
+    <string name="lblDate">Date</string>
+    <string name="lblCustomer">Customer</string>
+    <string name="lblWarranty">Warranty</string>
+    <string name="lblSerialNo">Serial No.</string>
+    <string name="lblCaseModel">Case Model</string>
+    <string name="lblCaseDesc">Case Description</string>
+    <string name="lblRequestedBy">Requested By</string>
+    <string name="lblCustomerPO">Customer PO</string>
 
+    <string name="tfCustomer">Customer</string>
+    <string name="tfSerialNo">Serial No.</string>
+    <string name="tfCaseModel">Case Model</string>
+    <string name="tfCaseDesc">Case Description</string>
+    <string name="tfRequestedBy">Requested By</string>
+    <string name="tfCustomerPO">Customer PO</string>
+    <string name="btnSave">Save Changes</string>
 </resources>
