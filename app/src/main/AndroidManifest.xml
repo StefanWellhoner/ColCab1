@@ -12,7 +12,7 @@
         <activity android:name=".OpenTicketsActivity"/>
         <activity android:name=".ViewOpenTicketActivity" />
         <activity android:name=".LogTicketActivity" />
-        <activity android:name=".HomePage">
+        <activity android:name=".HomePageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

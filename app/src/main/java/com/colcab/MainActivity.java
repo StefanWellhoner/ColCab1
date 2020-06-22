@@ -10,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //@TODO insert intents for navigation
         switch (id){
             case R.id.nav_home:
-                i = new Intent(this,HomePage.class);
+                i = new Intent(this, HomePageActivity.class);
                 startActivity(i);
                 finish();
                 break;

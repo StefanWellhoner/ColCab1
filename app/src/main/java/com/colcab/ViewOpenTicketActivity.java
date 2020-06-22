@@ -10,13 +10,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -94,7 +92,7 @@ public class ViewOpenTicketActivity extends AppCompatActivity implements Navigat
         //@TODO insert intents for navigation
         switch (id){
             case R.id.nav_home:
-                i = new Intent(this,HomePage.class);
+                i = new Intent(this, HomePageActivity.class);
                 startActivity(i);
                 finish();
                 break;
