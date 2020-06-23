@@ -52,49 +52,49 @@
     <string name="cbClosed">Closed</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="lblScheduleDate">Schedule Date</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="lblContractor">Contractor</string>
+
+    <!--  fragment_ticket_admin String Resources-->
+    <string name="dateDate">Date</string>
+    <string name="txtContractorFullName">Full Name</string>
+    <string name="txtContractorCompany">Company</string>
+    <string name="txtContractorCountryRegion">Country/Region</string>
+    <string name="txtContractorCompanyNumber">Company Number</string>
+    <string name="txtContractorMobileNumber">Mobile Number</string>
+    <string name="lblDate">Date</string>
+    <string name="lblCustomer">Customer</string>
+    <string name="lblWarranty">Warranty</string>
+    //Edit open Tickets
+    <string name="lblSerialNo">Serial No.</string>
+    <string name="lblCaseModel">Case Model</string>
+    <string name="lblCaseDesc">Case Description</string>
+    <string name="lblRequestedBy">Requested By</string>
+    <string name="lblCustomerPO">Customer PO</string>
+    <string name="tfCustomer">Customer</string>
+    <string name="tfSerialNo">Serial No.</string>
+    <string name="tfCaseModel">Case Model</string>
+
+    <string name="tfCaseDesc">Case Description</string>
+    <string name="tfRequestedBy">Requested By</string>
+    <string name="tfCustomerPO">Customer PO</string>
+    <string name="btnSave">Save Changes</string>
     <string-array name="log_status_Text">
         <item>IN</item>
         <item>OUT</item>
         <item>UNKNOWN</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="spnClosedTickets">
         <item>Category</item>
         <item>test data 1</item>
         <item>test data 2</item>
         <item>test data 3</item>
     </string-array>
-
-    <!--  fragment_ticket_admin String Resources-->
-    <string name="lblScheduleDate">Schedule Date</string>
-    <string name="lblContractor">Contractor</string>
-    <string name="dateDate">Date</string>
     <string-array name="spnContractors">
         <item>Choose Contractor</item>
         <item>Contractor 1</item>
         <item>Contractor 2</item>
         <item>Contractor 3</item>
     </string-array>
-    <string name="txtContractorFullName">Full Name</string>
-    <string name="txtContractorCompany">Company</string>
-    <string name="txtContractorCountryRegion">Country/Region</string>
-    <string name="txtContractorCompanyNumber">Company Number</string>
-    <string name="txtContractorMobileNumber">Mobile Number</string>
-    //Edit open Tickets
-    <string name="lblDate">Date</string>
-    <string name="lblCustomer">Customer</string>
-    <string name="lblWarranty">Warranty</string>
-    <string name="lblSerialNo">Serial No.</string>
-    <string name="lblCaseModel">Case Model</string>
-    <string name="lblCaseDesc">Case Description</string>
-    <string name="lblRequestedBy">Requested By</string>
-    <string name="lblCustomerPO">Customer PO</string>
-
-    <string name="tfCustomer">Customer</string>
-    <string name="tfSerialNo">Serial No.</string>
-    <string name="tfCaseModel">Case Model</string>
-    <string name="tfCaseDesc">Case Description</string>
-    <string name="tfRequestedBy">Requested By</string>
-    <string name="tfCustomerPO">Customer PO</string>
-    <string name="btnSave">Save Changes</string>
 </resources>

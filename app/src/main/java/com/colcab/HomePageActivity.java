@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         int id = item.getItemId();
         Intent i;
         //@TODO insert intents for navigation
-        switch (id){
+        switch (id) {
             case R.id.nav_home:
                 i = new Intent(this, HomePageActivity.class);
                 startActivity(i);

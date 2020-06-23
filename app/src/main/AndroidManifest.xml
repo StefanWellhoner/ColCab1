@@ -8,16 +8,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OpenTicketsActivity"/>
-        <activity android:name=".ViewOpenTicketActivity" />
-        <activity android:name=".LogTicketActivity" />
-        <activity android:name=".HomePageActivity">
+        <activity
+            android:name=".OpenTicketsActivity"
+            android:parentActivityName=".HomePageActivity" />
+        <activity
+            android:name=".ViewOpenTicketActivity"
+            android:parentActivityName=".OpenTicketsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LogTicketActivity"
+            android:parentActivityName=".HomePageActivity" />
+        <activity android:name=".HomePageActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

@@ -19,11 +19,11 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class ViewOpenTicketActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ViewOpenTicketActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private class SectionPagerAdapter extends FragmentPagerAdapter{
+    private class SectionPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionPagerAdapter(FragmentManager fm){
+        public SectionPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -35,7 +35,7 @@ public class ViewOpenTicketActivity extends AppCompatActivity implements Navigat
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return new TicketInfoFragment();
                 case 1:
@@ -50,7 +50,7 @@ public class ViewOpenTicketActivity extends AppCompatActivity implements Navigat
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return "Ticket Info";
                 case 1:
@@ -90,7 +90,7 @@ public class ViewOpenTicketActivity extends AppCompatActivity implements Navigat
         int id = menuItem.getItemId();
         Intent i;
         //@TODO insert intents for navigation
-        switch (id){
+        switch (id) {
             case R.id.nav_home:
                 i = new Intent(this, HomePageActivity.class);
                 startActivity(i);

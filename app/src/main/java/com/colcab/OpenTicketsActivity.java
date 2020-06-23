@@ -44,9 +44,12 @@ public class OpenTicketsActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
 
             switch (position) {
-                case 0: return "Scheduled Tickets";
-                case 1: return "Unscheduled Tickets";
-                default: return null;
+                case 0:
+                    return "Scheduled Tickets";
+                case 1:
+                    return "Unscheduled Tickets";
+                default:
+                    return null;
             }
 
         }

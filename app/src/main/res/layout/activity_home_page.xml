@@ -35,7 +35,6 @@ tools:context=".HomePageActivity">
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/colorWhite"
                 android:text="@string/btnLogTicket"
-                android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:onClick="onLogTicket"/>
 
@@ -47,7 +46,6 @@ tools:context=".HomePageActivity">
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/colorWhite"
                 android:text="@string/btnOpenTickets"
-                android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:onClick="onOpenTicket"/>
 
@@ -59,7 +57,6 @@ tools:context=".HomePageActivity">
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/colorWhite"
                 android:text="@string/btnClosedTickets"
-                android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:onClick="onClosedTicket"/>
 
