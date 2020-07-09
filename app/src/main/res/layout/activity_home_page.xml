@@ -6,13 +6,13 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:id="@+id/drawer_layout"
 android:orientation="vertical"
-tools:context=".HomePage">
+tools:context=".HomePageActivity">
 
     <!-- @TODO Fix background logo        -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomePage">
+        tools:context=".HomePageActivity">
 
         <include layout="@layout/toolbar_main"
             android:id="@+id/toolbar"/>
@@ -35,7 +35,6 @@ tools:context=".HomePage">
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/colorWhite"
                 android:text="@string/btnLogTicket"
-                android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:onClick="onLogTicket"/>
 
@@ -47,7 +46,6 @@ tools:context=".HomePage">
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/colorWhite"
                 android:text="@string/btnOpenTickets"
-                android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:onClick="onOpenTicket"/>
 
@@ -58,8 +56,7 @@ tools:context=".HomePage">
                 android:alpha="0.85"
                 android:backgroundTint="@color/buttonColor"
                 android:textColor="@color/colorWhite"
-                android:text="@string/btnClosedTicekts"
-                android:layout_weight="1"
+                android:text="@string/btnClosedTickets"
                 android:layout_margin="10dp"
                 android:onClick="onClosedTicket"/>
 

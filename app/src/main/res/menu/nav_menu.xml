@@ -4,19 +4,20 @@
         <menu>
             <item
                 android:id="@+id/nav_home"
-                android:title="@string/nav_home"/>
+                android:checked="true"
+                android:title="@string/nav_home" />
             <item
                 android:id="@+id/nav_log_ticket"
-                android:title="@string/nav_log_ticket"/>
+                android:title="@string/nav_log_ticket" />
             <item
                 android:id="@+id/nav_view_schedule"
-                android:title="@string/nav_view_schedule"/>
+                android:title="@string/nav_view_schedule" />
             <item
                 android:id="@+id/nav_view_closed"
-                android:title="@string/nav_view_closed"/>
+                android:title="@string/nav_view_closed" />
             <item
                 android:id="@+id/nav_exit"
-                android:title="@string/nav_exit"/>
+                android:title="@string/nav_exit" />
         </menu>
     </item>
 </menu>

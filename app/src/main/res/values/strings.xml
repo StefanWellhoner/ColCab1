@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ColCab</string>
-    <!--    Navbar String Resources-->
+    <!--    Screen Labels-->
+    <string name="screen_log_ticket">Log Ticket</string>
+    <string name="screen_open_ticket">Open Ticket</string>
+
+    <!--    Nav bar String Resources-->
     <string name="nav_general">General</string>
     <string name="nav_home">Home</string>
     <string name="nav_log_ticket">Log Ticket</string>
@@ -28,7 +32,7 @@
     <string name="log_serialNum_Text">AAXXXXX-XX</string>
     <string name="log_caseModel_Text">AAXXXXXX</string>
     <string name="log_caseDescription_Text">DESCRIPTION &#8230;</string>
-    <string name="log_requestedBy_Text">Requested By: Position, Contact no&#8230; etc.</string>
+    <string name="log_requestedBy_Text">Full Name</string>
     <string name="log_customerPO_Text">CUSTOMER PO</string>
     <string name="btnLogTicket">Log Ticket</string>
 
@@ -36,7 +40,7 @@
 
     //Home Page strings
     <string name="btnOpenTickets">Open Tickets</string>
-    <string name="btnClosedTicekts">Closed Tickets</string>
+    <string name="btnClosedTickets">Closed Tickets</string>
     <string name="btnScheduled">Scheduled</string>
     <string name="lblRootCause">ROOT CAUSE</string>
 
@@ -52,30 +56,49 @@
     <string name="cbClosed">Closed</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="lblScheduleDate">Schedule Date</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="lblContractor">Contractor</string>
+
+    <!--  fragment_ticket_admin String Resources-->
+    <string name="dateDate">Date</string>
+    <string name="txtContractorFullName">Full Name</string>
+    <string name="txtContractorCompany">Company</string>
+    <string name="txtContractorCountryRegion">Country/Region</string>
+    <string name="txtContractorCompanyNumber">Company Number</string>
+    <string name="txtContractorMobileNumber">Mobile Number</string>
+    <string name="lblDate">Date</string>
+    <string name="lblCustomer">Customer</string>
+    <string name="lblWarranty">Warranty</string>
+    //Edit open Tickets
+    <string name="lblSerialNo">Serial No.</string>
+    <string name="lblCaseModel">Case Model</string>
+    <string name="lblCaseDesc">Case Description</string>
+    <string name="lblRequestedBy">Requested By</string>
+    <string name="lblCustomerPO">Customer PO</string>
+    <string name="tfCustomer">Customer</string>
+    <string name="tfSerialNo">Serial No.</string>
+    <string name="tfCaseModel">Case Model</string>
+
+    <string name="tfCaseDesc">Case Description</string>
+    <string name="tfRequestedBy">Requested By</string>
+    <string name="tfCustomerPO">Customer PO</string>
+    <string name="btnSave">Save Changes</string>
     <string-array name="log_status_Text">
         <item>IN</item>
         <item>OUT</item>
         <item>UNKNOWN</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="spnClosedTickets">
         <item>Category</item>
         <item>test data 1</item>
         <item>test data 2</item>
         <item>test data 3</item>
     </string-array>
-
-    <!--  fragment_ticket_admin String Resources-->
-    <string name="lblScheduleDate">Schedule Date</string>
-    <string name="lblContractor">Contractor</string>
-    <string name="dateDate">Date</string>
     <string-array name="spnContractors">
         <item>Choose Contractor</item>
+        <item>Contractor 1</item>
+        <item>Contractor 2</item>
+        <item>Contractor 3</item>
     </string-array>
-    <string name="txtContractorFullName">Full Name</string>
-    <string name="txtContractorCompany">Company</string>
-    <string name="txtContractorCountryRegion">Country/Region</string>
-    <string name="txtContractorCompanyNumber">Company Number</string>
-    <string name="txtContractorMobileNumber">Mobile Number</string>
-
 </resources>

@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     public void onLogTicket(View view) {
-
+        Intent i = new Intent(this, LogTicketActivity.class);
+        startActivity(i);
     }
 
     public void onOpenTicket(View view) {
@@ -50,9 +51,9 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         int id = item.getItemId();
         Intent i;
         //@TODO insert intents for navigation
-        switch (id){
+        switch (id) {
             case R.id.nav_home:
-                i = new Intent(this,HomePage.class);
+                i = new Intent(this, HomePageActivity.class);
                 startActivity(i);
                 finish();
                 break;
