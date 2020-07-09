@@ -10,6 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".OpenTicketsActivity"
+            android:label="@string/screen_open_ticket"
             android:parentActivityName=".HomePageActivity" />
         <activity
             android:name=".ViewOpenTicketActivity"
@@ -22,6 +23,7 @@
         </activity>
         <activity
             android:name=".LogTicketActivity"
+            android:label="@string/screen_log_ticket"
             android:parentActivityName=".HomePageActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".MainActivity" />

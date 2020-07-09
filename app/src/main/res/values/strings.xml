@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">ColCab</string>
+    <!--    Screen Labels-->
+    <string name="screen_log_ticket">Log Ticket</string>
+    <string name="screen_open_ticket">Open Ticket</string>
+
     <!--    Nav bar String Resources-->
     <string name="nav_general">General</string>
     <string name="nav_home">Home</string>
@@ -28,7 +32,7 @@
     <string name="log_serialNum_Text">AAXXXXX-XX</string>
     <string name="log_caseModel_Text">AAXXXXXX</string>
     <string name="log_caseDescription_Text">DESCRIPTION &#8230;</string>
-    <string name="log_requestedBy_Text">Requested By: Position, Contact no&#8230; etc.</string>
+    <string name="log_requestedBy_Text">Full Name</string>
     <string name="log_customerPO_Text">CUSTOMER PO</string>
     <string name="btnLogTicket">Log Ticket</string>
 
