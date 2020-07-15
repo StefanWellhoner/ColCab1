@@ -33,7 +33,7 @@
     <string name="log_caseModel_Text">AAXXXXXX</string>
     <string name="log_caseDescription_Text">DESCRIPTION &#8230;</string>
     <string name="log_requestedBy_Text">Full Name</string>
-    <string name="log_customerPO_Text">CUSTOMER PO</string>
+    <string name="log_customerPO_Text">Customer P.O.</string>
     <string name="btnLogTicket">Log Ticket</string>
 
     <!--   //End of LogTicketScreen String Resources-->
@@ -70,6 +70,7 @@
     <string name="lblDate">Date</string>
     <string name="lblCustomer">Customer</string>
     <string name="lblWarranty">Warranty</string>
+    <string name="btnAddContractor">Add Contractor</string>
     //Edit open Tickets
     <string name="lblSerialNo">Serial No.</string>
     <string name="lblCaseModel">Case Model</string>

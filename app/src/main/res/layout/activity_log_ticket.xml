@@ -18,33 +18,20 @@
 
             <include layout="@layout/toolbar_main" android:id="@+id/toolbar"/>
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:hint="@string/log_date_Text"
-                android:inputType="date"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView" />
-
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/log_logged_lbl"
-                app:layout_constraintEnd_toStartOf="@+id/editText"
+                android:layout_marginEnd="8dp"
+                android:text="@string/log_customer_lbl"
+                app:layout_constraintEnd_toStartOf="@+id/tfCustomer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/tfCustomer"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="8dp"
@@ -57,19 +44,17 @@
                 app:layout_constraintStart_toEndOf="@+id/textView2" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/log_customer_lbl"
-                app:layout_constraintEnd_toStartOf="@+id/editText2"
+                android:layout_marginTop="16dp"
+                android:text="@string/log_warranty_lbl"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/tfCustomer" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spnWarranty"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
@@ -80,8 +65,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/log_serialNum_lbl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spnWarranty" />
+
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/tfSerialNum"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
@@ -95,17 +90,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/log_serialNum_lbl"
+                android:text="@string/log_caseModel_lbl"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/tfSerialNum" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/tfCaseModel"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
@@ -119,26 +114,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/log_caseModel_lbl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText4" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/log_warranty_lbl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-            <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,10 +121,10 @@
                 android:text="@string/log_caseDescription_lbl"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText5" />
+                app:layout_constraintTop_toBottomOf="@+id/tfCaseModel" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/tfCaseDesc"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
@@ -170,10 +145,10 @@
                 android:text="@string/log_requestedBy_lbl"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+                app:layout_constraintTop_toBottomOf="@+id/tfCaseDesc" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/tfRequestedBy"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
@@ -194,10 +169,10 @@
                 android:text="@string/log_customerPO_lbl"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                app:layout_constraintTop_toBottomOf="@+id/tfRequestedBy" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/tfCustomerPO"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
@@ -217,11 +192,12 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="32dp"
+                android:onClick="onLogTicket"
                 android:text="@string/btnLogTicket"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText7" />
+                app:layout_constraintTop_toBottomOf="@+id/tfCustomerPO" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
