@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.Timestamp;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class TicketAdapter extends FirestoreRecyclerAdapter<UnscheduledTickets, TicketAdapter.TicketHolder> {
@@ -24,9 +25,10 @@ public class TicketAdapter extends FirestoreRecyclerAdapter<UnscheduledTickets, 
     @Override
     protected void onBindViewHolder(@NonNull TicketHolder holder, int position, @NonNull UnscheduledTickets model) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
+        Date loggedDate = model.getLoggedDate().toDate();
         holder.tfCustomer.setText(model.getCustomer());
         holder.tfDescription.setText(model.getCaseDescription());
-        holder.tfLoggedDate.setText(sdf.format(model.getLoggedDate().toDate()));
+        holder.tfLoggedDate.setText(sdf.format(loggedDate));
     }
 
     @NonNull

@@ -1,8 +1,43 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!--Main App Theme-->
+    <style name="Theme.ColCab" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!--TextField Styles-->
+    <style name="Widget.ColCab.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.ColCab.TextInputLayout.HintText</item>
+        <item name="hintTextColor">@color/colorHint</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="boxStrokeColor">@color/textInputOutlineColor</item>
+    </style>
+
+    <style name="TextAppearance.ColCab.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">?android:attr/textColorHint</item>
+    </style>
+
+    <!--Dropdown Menu Styles-->
+    <style name="Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <!--Buttons Styles-->
+    <style name="Widget.ColCab.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="backgroundTint">@color/colorHint</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Widget.ColCab.Button.Primary" parent="Widget.ColCab.Button">
+        <item name="backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="Widget.ColCab.Button.Secondary" parent="Widget.ColCab.Button">
+        <item name="backgroundTint">@color/colorSecondary</item>
+    </style>
+
 </resources>

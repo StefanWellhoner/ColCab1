@@ -32,14 +32,14 @@ public class UnscheduledTicketsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RecyclerView unscheduledTickerRV = (RecyclerView) inflater.inflate(R.layout.fragment_unscheduled_tickets, container, false);
+        RecyclerView unscheduledTicketRV = (RecyclerView) inflater.inflate(R.layout.fragment_unscheduled_tickets, container, false);
         Query query = ticketsRef.orderBy("customer", Query.Direction.DESCENDING).whereEqualTo("scheduled", false);
         FirestoreRecyclerOptions<UnscheduledTickets> options = new FirestoreRecyclerOptions.Builder<UnscheduledTickets>().setQuery(query, UnscheduledTickets.class).build();
         adapter = new TicketAdapter(options);
-        unscheduledTickerRV.setHasFixedSize(true);
-        unscheduledTickerRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        unscheduledTickerRV.setAdapter(adapter);
-        return unscheduledTickerRV;
+        unscheduledTicketRV.setHasFixedSize(true);
+        unscheduledTicketRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        unscheduledTicketRV.setAdapter(adapter);
+        return unscheduledTicketRV;
     }
 
     @Override

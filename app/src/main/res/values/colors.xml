@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#007989</color>
-    <color name="colorPrimaryDark">#135059</color>
-    <color name="colorAccent">#A3EEF8</color>
-    <color name="buttonColor">#007989</color>
+    <color name="colorPrimary">#007F9A</color>
+    <color name="colorPrimaryDark">#007F9A</color>
+    <color name="colorSecondary">#09AF00</color>
+    <color name="colorSecondaryDark">#1FAE4E</color>
+    <color name="colorAccent">#00B4D9</color>
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorError">#E30425</color>
+    <color name="colorError">#B63019</color>
+    <color name="colorHint">#555555</color>
+    <color name="textColorPrimary">#333333</color>
+    <color name="textInputOutlineColor">@color/colorPrimary</color>
+    <color name="toolbarIconColor">@color/textColorPrimary</color>
 </resources>

@@ -10,15 +10,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,15 +31,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class LogTicketActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private EditText tfCustomer, tfSerialNum, tfCaseModel, tfCaseDesc, tfRequestedBy, tfCustomerPO;
-    private Spinner spnWarranty;
+public class LogTicketActivity extends AppCompatActivity {
+    private TextInputLayout lCustomer, lSerialNumber, lCaseModel, lCaseDesc, lReqBy, lCustomerPO;
+    private TextInputEditText tfCustomer, tfSerialNum, tfCaseModel, tfCaseDesc, tfRequestedBy, tfCustomerPO;
+    private AutoCompleteTextView spnWarranty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,41 +48,9 @@ public class LogTicketActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_log_ticket);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open_drawer, R.string.nav_close_drawer);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        Intent i;
-        //@TODO insert intents for navigation
-        switch (id) {
-            case R.id.nav_home:
-                i = new Intent(this, HomePageActivity.class);
-                startActivity(i);
-                finish();
-                break;
-            case R.id.nav_log_ticket:
-                break;
-            case R.id.nav_view_closed:
-                break;
-            case R.id.nav_view_schedule:
-                break;
-            case R.id.nav_exit:
-                System.exit(0);
-                break;
-        }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        initComponents();
+        initOnKeyListeners();
     }
 
     /**
@@ -84,6 +58,7 @@ public class LogTicketActivity extends AppCompatActivity implements NavigationVi
      * Initializes the components to grab data from them
      */
     private void initComponents() {
+        // text fields containing user's entered data
         tfCustomer = findViewById(R.id.tfCustomer);
         tfSerialNum = findViewById(R.id.tfSerialNum);
         tfCaseModel = findViewById(R.id.tfCaseModel);
@@ -91,6 +66,75 @@ public class LogTicketActivity extends AppCompatActivity implements NavigationVi
         tfRequestedBy = findViewById(R.id.tfRequestedBy);
         tfCustomerPO = findViewById(R.id.tfCustomerPO);
         spnWarranty = findViewById(R.id.spnWarranty);
+
+        // Layouts for setting errors
+        lCustomer = findViewById(R.id.lCustomer);
+        lSerialNumber = findViewById(R.id.lSerialNumber);
+        lCaseModel = findViewById(R.id.lCaseModel);
+        lCaseDesc = findViewById(R.id.lCaseDesc);
+        lReqBy = findViewById(R.id.lReqBy);
+        lCustomerPO = findViewById(R.id.lCustomerPO);
+    }
+
+    /**
+     * void initOnKeyListeners()
+     * Initializes the on key listeners to remove error messages from the text fields
+     */
+    private void initOnKeyListeners() {
+        tfCustomer.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (Validator.isCustomerValid(tfCustomer.getText().toString())) {
+                    lCustomer.setError(null);
+                }
+                return false;
+            }
+        });
+        tfSerialNum.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (Validator.isSerialNumberValid(tfSerialNum.getText().toString())) {
+                    lSerialNumber.setError(null);
+                }
+                return false;
+            }
+        });
+        tfCaseModel.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (Validator.isCaseModelValid(tfCaseModel.getText().toString())) {
+                    lCaseModel.setError(null);
+                }
+                return false;
+            }
+        });
+        tfCaseDesc.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (Validator.isCaseDescValid(tfCaseDesc.getText().toString())) {
+                    lCaseDesc.setError(null);
+                }
+                return false;
+            }
+        });
+        tfRequestedBy.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (Validator.isRequestedByValid(tfRequestedBy.getText().toString())) {
+                    lReqBy.setError(null);
+                }
+                return false;
+            }
+        });
+        tfCustomerPO.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (Validator.isCustomerPOValid(tfCustomerPO.getText().toString())) {
+                    lCustomerPO.setError(null);
+                }
+                return false;
+            }
+        });
     }
 
     /**
@@ -112,35 +156,63 @@ public class LogTicketActivity extends AppCompatActivity implements NavigationVi
      * @param customerPO customer purchase order
      * @return valid whether all the fields are filled with valid information
      */
-    private boolean isValidInfo(String customer, String serialNum, String caseModel, String caseDesc, String reqBy, String customerPO) {
-        boolean valid = false;
-        if (!customer.isEmpty() && !serialNum.isEmpty() && !caseModel.isEmpty() && !caseDesc.isEmpty() && !reqBy.isEmpty() && !customerPO.isEmpty()) {
-            valid = true;
+    private boolean isTicketInfoValid(String customer, String serialNum, String caseModel, String caseDesc, String reqBy, String customerPO) {
+        int errorCounter = 0;
+        if (!Validator.isCustomerValid(customer)) {
+            errorCounter++;
+            lCustomer.setError("Customer can't be empty");
         }
-        return valid;
+        if (!Validator.isSerialNumberValid(serialNum)) {
+            errorCounter++;
+            lSerialNumber.setError("Serial Number can't be empty");
+        }
+        if (!Validator.isCaseModelValid(caseModel)) {
+            errorCounter++;
+            lCaseModel.setError("Case Model can't be empty");
+        }
+        if (!Validator.isCaseDescValid(caseDesc)) {
+            errorCounter++;
+            lCaseDesc.setError("Case Description can't be empty");
+        }
+        if (!Validator.isRequestedByValid(reqBy)) {
+            errorCounter++;
+            lReqBy.setError("Requested By can't be empty");
+        }
+        if (!Validator.isCustomerPOValid(customerPO)) {
+            errorCounter++;
+            lCustomerPO.setError("Customer PO can't be empty");
+        }
+        return errorCounter > 0;
     }
 
     /**
      * void onLogTicket(Button)
      * When the log ticket button is clicked a ticket will be logged and saved in firebase
      */
-    public void onLogTicket(View v) {
-        initComponents();
-
+    public void onLogTickets(View v) {
         // Get text from text fields entered by user
         String customer = tfCustomer.getText().toString();
-        String warranty = spnWarranty.getSelectedItem().toString();
+        String warranty = spnWarranty.getText().toString();
         String serialNum = tfSerialNum.getText().toString();
         String caseModel = tfCaseModel.getText().toString();
         String caseDesc = tfCaseDesc.getText().toString();
         String reqBy = tfRequestedBy.getText().toString();
         String customerPO = tfCustomerPO.getText().toString();
-        String[] reqByArr = reqBy.split(" ");
-        Map<String, Object> fullName = new HashMap<>();
-        fullName.put("firstName", reqByArr[0]);
-        fullName.put("middleName", reqByArr[1]);
-        fullName.put("lastName", reqByArr[2]);
-        if (isValidInfo(customer, serialNum, caseModel, caseDesc, reqBy, customerPO)) {
+
+        if (!isTicketInfoValid(customer, serialNum, caseModel, caseDesc, reqBy, customerPO)) {
+            String lastName = "";
+            String firstName = "";
+            if (reqBy.split("\\w+").length > 1) {
+
+                lastName = reqBy.substring(reqBy.lastIndexOf(" ") + 1);
+                firstName = reqBy.substring(0, reqBy.lastIndexOf(' '));
+            } else {
+                firstName = reqBy;
+            }
+            Map<String, Object> fullName = new HashMap<>();
+            fullName.put("firstName", firstName);
+            fullName.put("lastName", lastName);
+
             // Add entered text to Hashmap for Firebase
             Map<String, Object> ticketData = new HashMap<>();
             ticketData.put("loggedDate", getCurrentDate());

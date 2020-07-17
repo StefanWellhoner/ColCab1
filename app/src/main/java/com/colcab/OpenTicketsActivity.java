@@ -62,6 +62,7 @@ public class OpenTicketsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SectionPagerAdapter spa = new SectionPagerAdapter(getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.pager);
