@@ -14,12 +14,16 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class ViewOpenTicketActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ViewOpenTicketActivity extends AppCompatActivity {
 
     private class SectionPagerAdapter extends FragmentPagerAdapter {
 
@@ -69,45 +73,33 @@ public class ViewOpenTicketActivity extends AppCompatActivity implements Navigat
         setContentView(R.layout.activity_view_open_ticket);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open_drawer, R.string.nav_close_drawer);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SectionPagerAdapter pagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
         ViewPager pager = findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id = menuItem.getItemId();
-        Intent i;
-        //@TODO insert intents for navigation
-        switch (id) {
-            case R.id.nav_home:
-                i = new Intent(this, HomePageActivity.class);
-                startActivity(i);
-                finish();
-                break;
-            case R.id.nav_log_ticket:
-                break;
-            case R.id.nav_view_closed:
-                break;
-            case R.id.nav_view_schedule:
-                break;
-            case R.id.nav_exit:
-                System.exit(0);
-                break;
-        }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.view_ticket_options, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.del_ticket:
+                Toast.makeText(this, "Delete Ticket", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.close_ticket:
+                Toast.makeText(this, "Close Ticket", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

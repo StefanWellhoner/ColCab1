@@ -1,87 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:id="@+id/drawer_layout"
-android:orientation="vertical"
-tools:context=".HomePageActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".HomePageActivity">
 
-    <!-- @TODO Fix background logo        -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".HomePageActivity">
 
-        <include layout="@layout/toolbar_main"
-            android:id="@+id/toolbar"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_main" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            android:clipChildren="false"
+            android:padding="16dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogTicket"
+                style="@style/Widget.ColCab.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/colorWhite"
-                android:text="@string/btnLogTicket"
-                android:layout_margin="10dp"
-                android:onClick="onLogTicket"/>
+                android:layout_height="80dp"
+                android:onClick="onLogTicket"
+                android:text="@string/btnLogTicket" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnOpenTickets"
+                style="@style/Widget.ColCab.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/colorWhite"
-                android:text="@string/btnOpenTickets"
-                android:layout_margin="10dp"
-                android:onClick="onOpenTicket"/>
+                android:layout_height="80dp"
+                android:onClick="onOpenTicket"
+                android:text="@string/btnOpenTickets" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnClosedTickets"
+                style="@style/Widget.ColCab.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:alpha="0.85"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/colorWhite"
-                android:text="@string/btnClosedTickets"
-                android:layout_margin="10dp"
-                android:onClick="onClosedTicket"/>
+                android:layout_height="80dp"
+                android:onClick="onClosedTicket"
+                android:text="@string/btnClosedTickets" />
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="@string/app_name"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/site_logo" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-<com.google.android.material.navigation.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    app:headerLayout="@layout/nav_header"
-    app:menu="@menu/nav_menu"/>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -2,7 +2,7 @@
     <string name="app_name">ColCab</string>
     <!--    Screen Labels-->
     <string name="screen_log_ticket">Log Ticket</string>
-    <string name="screen_open_ticket">Open Ticket</string>
+    <string name="screen_open_ticket">Open Tickets</string>
 
     <!--    Nav bar String Resources-->
     <string name="nav_general">General</string>
@@ -15,7 +15,6 @@
     <string name="nav_close_drawer">Close navigation drawer</string>
 
     <!--    LogTicketScreen String Resources-->
-
     <!-- Labels of LogTicketScreen -->
     <string name="log_logged_lbl">LOGGED</string>
     <string name="log_customer_lbl">CUSTOMER</string>
@@ -24,18 +23,16 @@
     <string name="log_caseModel_lbl">CASE MODEL</string>
     <string name="log_caseDescription_lbl">CASE DESCRIPTION</string>
     <string name="log_requestedBy_lbl">REQUESTED BY</string>
-    <string name="log_customerPO_lbl">CUSTOMER PO</string>
-
+    <string name="log_customerPO_lbl">Customer Purchase Order</string>
     <!-- Text Inputs of LogTicketScreen -->
     <string name="log_date_Text">YYDDMM</string>
     <string name="log_customer_Text">Store e.g Spar</string>
-    <string name="log_serialNum_Text">AAXXXXX-XX</string>
-    <string name="log_caseModel_Text">AAXXXXXX</string>
-    <string name="log_caseDescription_Text">DESCRIPTION &#8230;</string>
-    <string name="log_requestedBy_Text">Full Name</string>
-    <string name="log_customerPO_Text">CUSTOMER PO</string>
+    <string name="log_serialNum_Text">Product Serial Number</string>
+    <string name="log_caseModel_Text">Product Code Model</string>
+    <string name="log_caseDescription_Text">Description of Problem</string>
+    <string name="log_requestedBy_Text">Caller Full Name</string>
+    <string name="log_customerPO_Text">Customer P.O.</string>
     <string name="btnLogTicket">Log Ticket</string>
-
     <!--   //End of LogTicketScreen String Resources-->
 
     //Home Page strings
@@ -70,6 +67,7 @@
     <string name="lblDate">Date</string>
     <string name="lblCustomer">Customer</string>
     <string name="lblWarranty">Warranty</string>
+    <string name="btnAddContractor">Add Contractor</string>
     //Edit open Tickets
     <string name="lblSerialNo">Serial No.</string>
     <string name="lblCaseModel">Case Model</string>
@@ -84,6 +82,11 @@
     <string name="tfRequestedBy">Requested By</string>
     <string name="tfCustomerPO">Customer PO</string>
     <string name="btnSave">Save Changes</string>
+
+    <!--    Edit Ticket Options Menu-->
+    <string name="option_delete">Delete</string>
+    <string name="option_close">Close</string>
+
     <string-array name="log_status_Text">
         <item>IN</item>
         <item>OUT</item>
