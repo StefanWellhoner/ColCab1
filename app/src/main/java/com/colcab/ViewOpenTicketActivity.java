@@ -58,7 +58,7 @@ public class ViewOpenTicketActivity extends AppCompatActivity {
                 case 0:
                     return "Ticket Info";
                 case 1:
-                    return "Administration";
+                    return "Admin";
                 case 2:
                     return "Notes";
                 default:
