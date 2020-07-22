@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableRow;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -33,84 +36,80 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class TicketAdminFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionButton fabAddContractor;
-    private TableRow addContractorPanel;
-    private Button btnAddContractor;
+    private LinearLayout addContractorPanel;
+    private Button btnAddContractor, btnCancel;
 
-    private TextInputLayout lFullName, lCompanyNumber, lMobileNumber, lEmailAddress, lCountryRegion;
-    private TextInputEditText tfFullName, tfCompanyNumber, tfMobileNumber, tfEmailAddress, tfCountryRegion;
-
-
+    private TextInputLayout lFullName, lBusinessNumber, lMobileNumber, lCompanyName, lCountryRegion;
+    private TextInputEditText tfFullName, tfBusinessNumber, tfMobileNumber, tfCompanyName, tfCountryRegion;
 
     public TicketAdminFragment() {
         // Required empty public constructor
     }
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
-        setContentView(R.layout.fragment_ticket_admin);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-        initComponents();
-        initOnKeyListeners();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_ticket_admin, container, false);
-        fabAddContractor = frameLayout.findViewById(R.id.fabAddContractor);
-        addContractorPanel = frameLayout.findViewById(R.id.addContractorPanel);
-        btnAddContractor = frameLayout.findViewById(R.id.btnAddContractor);
+        ScrollView scrollView = (ScrollView) inflater.inflate(R.layout.fragment_ticket_admin, container, false);
+        initComponents(scrollView);
+        initOnKeyListeners();
         fabAddContractor.setOnClickListener(this);
         btnAddContractor.setOnClickListener(this);
-        return frameLayout;
+        btnCancel.setOnClickListener(this);
+        return scrollView;
     }
-
-
 
     @Override
     public void onClick(View view) {
-        if (view.equals(fabAddContractor)) {
-            addContractorPanel.setVisibility(View.VISIBLE);
-        }
-        if (view.equals(btnAddContractor)) {
-            Toast.makeText(getContext(), "Contractor Added", Toast.LENGTH_LONG).show();
-            addContractorPanel.setVisibility(View.INVISIBLE);
+        switch (view.getId()) {
+            case R.id.fabAddContractor:
+                addContractorPanel.setVisibility(View.VISIBLE);
+                fabAddContractor.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.btnAddContractor:
+                addContractor();
+                break;
+            case R.id.btnCancel:
+                addContractorPanel.setVisibility(View.GONE);
+                fabAddContractor.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
         }
     }
 
     /**
-     * void initComponents()
      * Initializes the components to grab data from them
+     * void initComponents()
      */
-    private void initComponents() {
-        // text fields containing user's entered data
-        tfFullName = getView().findViewById(R.id.tfFullName);
-        tfCompanyNumber = getView().findViewById(R.id.tfCompanyNumber);
-        tfMobileNumber = getView().findViewById(R.id.tfMobileNumber);
-        tfEmailAddress = getView().findViewById(R.id.tfEmailAddress);
-        tfCountryRegion = getView().findViewById(R.id.tfCountryRegion);
+    private void initComponents(View v) {
+        // Text fields containing user's entered data
+        tfFullName = v.findViewById(R.id.tfFullName);
+        tfBusinessNumber = v.findViewById(R.id.tfBusinessNumber);
+        tfMobileNumber = v.findViewById(R.id.tfMobileNumber);
+        tfCompanyName = v.findViewById(R.id.tfCompanyName);
+        tfCountryRegion = v.findViewById(R.id.tfCountryRegion);
 
         // Layouts for setting errors
+        lFullName = v.findViewById(R.id.lFullName);
+        lBusinessNumber = v.findViewById(R.id.lBusinessNumber);
+        lMobileNumber = v.findViewById(R.id.lMobileNumber);
+        lCompanyName = v.findViewById(R.id.lCompanyName);
+        lCountryRegion = v.findViewById(R.id.lCountryRegion);
 
-        lFullName = getView().findViewById(R.id.lFullName);
-        lCompanyNumber = getView().findViewById(R.id.lCompanyNumber);
-        lMobileNumber = getView().findViewById(R.id.lMobileNumber);
-        lEmailAddress = getView().findViewById(R.id.lEmailAddress);
-        lCountryRegion = getView().findViewById(R.id.lCountryRegion);
-
-
+        // Buttons for actions
+        fabAddContractor = v.findViewById(R.id.fabAddContractor);
+        addContractorPanel = v.findViewById(R.id.addContractorPanel);
+        btnAddContractor = v.findViewById(R.id.btnAddContractor);
+        btnCancel = v.findViewById(R.id.btnCancel);
     }
 
-
     /**
-     * void initOnKeyListeners()
      * Initializes the on key listeners to remove error messages from the text fields
+     * void initOnKeyListeners()
      */
     private void initOnKeyListeners() {
         tfFullName.setOnKeyListener(new View.OnKeyListener() {
@@ -122,11 +121,11 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
                 return false;
             }
         });
-        tfCompanyNumber.setOnKeyListener(new View.OnKeyListener() {
+        tfBusinessNumber.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (Validator.isSerialNumberValid(tfCompanyNumber.getText().toString())) {
-                    lCompanyNumber.setError(null);
+                if (Validator.isNumberValid(tfBusinessNumber.getText().toString())) {
+                    lBusinessNumber.setError(null);
                 }
                 return false;
             }
@@ -134,17 +133,17 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
         tfMobileNumber.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (Validator.isCaseModelValid(tfMobileNumber.getText().toString())) {
+                if (Validator.isNumberValid(tfMobileNumber.getText().toString())) {
                     lMobileNumber.setError(null);
                 }
                 return false;
             }
         });
-        tfEmailAddress.setOnKeyListener(new View.OnKeyListener() {
+        tfCompanyName.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (Validator.isCaseDescValid(tfEmailAddress.getText().toString())) {
-                    lEmailAddress.setError(null);
+                if (Validator.isCustomerValid(tfCompanyName.getText().toString())) {
+                    lCompanyName.setError(null);
                 }
                 return false;
             }
@@ -152,7 +151,7 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
         tfCountryRegion.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (Validator.isRequestedByValid(tfCountryRegion.getText().toString())) {
+                if (Validator.isRegionValid(tfCountryRegion.getText().toString())) {
                     lCountryRegion.setError(null);
                 }
                 return false;
@@ -160,92 +159,99 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
         });
     }
 
-    private Timestamp getCurrentDate() {
-        return Timestamp.now();
-    }
-
     /**
-     * @param fullName   full name of contractor
-     * @param companyNumber  company Number
-     * @param mobileNumber  mobile number
-     * @param email  email
+     * Validation method for Contractor information
+     *
+     * @param fullName       full name of contractor
+     * @param businessNumber company Number
+     * @param mobileNumber   mobile number
+     * @param companyName    company Name
      * @param countryRegion  where the contractor is from
      * @return valid whether all the fields are filled with valid information
      */
-    private boolean isTicketInfoValid(String fullName, String companyNumber, String mobileNumber, String email, String countryRegion) {
+    private boolean isTicketInfoValid(String fullName, String businessNumber, String mobileNumber, String companyName, String countryRegion) {
         int errorCounter = 0;
         if (!Validator.isCustomerValid(fullName)) {
             errorCounter++;
-            lFullName.setError("Name of Contractor can't be empty");
+            lFullName.setError("Contractor Name can't be empty");
         }
-        if (!Validator.isSerialNumberValid(companyNumber)) {
+        if (!Validator.isNumberValid(businessNumber)) {
             errorCounter++;
-            lCompanyNumber.setError("Company Number can't be empty");
+            lBusinessNumber.setError("Business Number must be 10 digits");
         }
-        if (!Validator.isCaseModelValid(mobileNumber)) {
+        if (!Validator.isNumberValid(mobileNumber)) {
             errorCounter++;
-            lMobileNumber.setError("Mobile Number can't be empty");
+            lMobileNumber.setError("Mobile Number must be 10 digits");
         }
-        if (!Validator.isCaseDescValid(email)) {
+        if (!Validator.isCustomerValid(companyName)) {
             errorCounter++;
-            lEmailAddress.setError("Email can't be empty");
+            lCompanyName.setError("Company Name can't be empty");
         }
-        if (!Validator.isRequestedByValid(countryRegion)) {
+        if (!Validator.isRegionValid(countryRegion)) {
             errorCounter++;
-            lCountryRegion.setError("Country/ Region can't be empty");
+            lCountryRegion.setError("Country/Region can't be empty");
         }
-
         return errorCounter > 0;
     }
 
     /**
-     * void onAddContractor(Button)
-     * When the Add Contractor button is clicked a new contractor will be saved in firebase
+     * Map<String, String> splitFullname(String) a method that splits a fullname into 2 parts with key value pair 'firstName' and 'lastName'
+     *
+     * @param fullName full name of a person
+     * @return Map<Key, Value>
      */
-    public void onAddContractor(View v) {
+    private Map<String, String> splitFullName(String fullName) {
+        String lastName = "";
+        String firstName = "";
+        if (fullName.split("\\w+").length > 1) {
+
+            lastName = fullName.substring(fullName.lastIndexOf(" ") + 1);
+            firstName = fullName.substring(0, fullName.lastIndexOf(' '));
+        } else {
+            firstName = fullName;
+        }
+        Map<String, String> nameMap = new HashMap<>();
+        nameMap.put("firstName", firstName);
+        nameMap.put("lastName", lastName);
+        return nameMap;
+    }
+
+    /**
+     * When the Add Contractor button is clicked a new contractor will be saved in firebase
+     * void onAddContractor(Button)
+     */
+    public void addContractor() {
         // Get text from text fields entered by user
         String fullName = tfFullName.getText().toString();
-        String companyNumber = tfCompanyNumber.getText().toString();
+        String businessNumber = tfBusinessNumber.getText().toString();
         String mobileNumber = tfMobileNumber.getText().toString();
-        String emailAddress = tfEmailAddress.getText().toString();
+        String companyName = tfCompanyName.getText().toString();
         String countryRegion = tfCountryRegion.getText().toString();
 
-        if (!isTicketInfoValid(fullName, companyNumber, mobileNumber, emailAddress, countryRegion)) {
+        if (!isTicketInfoValid(fullName, businessNumber, mobileNumber, companyName, countryRegion)) {
 
-            String lastName = "";
-            String firstName = "";
-            if (reqBy.split("\\w+").length > 1) {
-
-                lastName = reqBy.substring(reqBy.lastIndexOf(" ") + 1);
-                firstName = reqBy.substring(0, reqBy.lastIndexOf(' '));
-            } else {
-                firstName = reqBy;
-            }
-            Map<String, Object> fullName = new HashMap<>();
-            fullName.put("firstName", firstName);
-            fullName.put("lastName", lastName);
+            Map<String, String> fName = splitFullName(fullName);
 
             // Add entered text to Hashmap for Firebase
             Map<String, Object> contractorData = new HashMap<>();
-            contractorData.put("enteredDate", getCurrentDate());
-            contractorData.put("fullName", fullName);
-            contractorData.put("companyNumber", companyNumber);
+            contractorData.put("fullName", fName);
+            contractorData.put("businessNumber", businessNumber);
             contractorData.put("mobileNumber", mobileNumber);
-            contractorData.put("email", emailAddress);
+            contractorData.put("company", companyName);
             contractorData.put("countryRegion", countryRegion);
-
-
 
             // Create database instance
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             // Insert data from user into "Contractor" collection
-            db.collection("tickets").add(ticketData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            db.collection("contractors").add(contractorData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 // OnSuccess => when ticket has been saved in Firebase
                 public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(TicketAdminFragment.this, "Contractor was Added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Contractor was Added", Toast.LENGTH_LONG).show();
                     System.out.println("Document ID: " + documentReference.getId());
+                    addContractorPanel.setVisibility(View.GONE);
+                    fabAddContractor.setVisibility(View.VISIBLE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -255,14 +261,7 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
                 }
             });
         } else {
-            Toast.makeText(TicketAdminFragment.this, "Please fill in all information", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Please fill in all information", Toast.LENGTH_LONG).show();
         }
     }
-
-
-
-
-
-
-
 }

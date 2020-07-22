@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
  */
 public class Validator {
 
+    public static final Pattern patNumber = Pattern.compile("[0-9]{10}");
+
     public static boolean isCustomerValid(String customer) {
         return customer != null && customer.length() > 0;
     }
@@ -30,5 +32,14 @@ public class Validator {
 
     public static boolean isCustomerPOValid(String customerPO) {
         return customerPO != null && customerPO.length() > 0;
+    }
+
+    public static boolean isNumberValid(String number) {
+        Matcher matcher = patNumber.matcher(number);
+        return matcher.find();
+    }
+
+    public static boolean isRegionValid(String region) {
+        return region != null && region.length() > 0;
     }
 }
