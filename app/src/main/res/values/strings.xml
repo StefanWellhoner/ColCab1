@@ -95,6 +95,9 @@
         <item>test data 2</item>
         <item>test data 3</item>
     </string-array>
+
+    <string name="dp_contractors">dd/mm/yyyy</string>
+
     <string-array name="spnContractors">
         <item>Choose Contractor</item>
         <item>Contractor 1aaaaaaaaaaaaaaaaaaaa</item>

@@ -1,5 +1,7 @@
 package com.colcab;
 
+import android.app.DatePickerDialog;
+import android.icu.util.ULocale;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,36 +13,52 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.Toast;
 
 //Added Imports
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import static android.content.ContentValues.TAG;
 
 public class TicketAdminFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionButton fabAddContractor;
     private LinearLayout addContractorPanel;
     private Button btnAddContractor, btnCancel;
+    private Spinner spnContractors;
 
-    private TextInputLayout lFullName, lBusinessNumber, lMobileNumber, lCompanyName, lCountryRegion;
-    private TextInputEditText tfFullName, tfBusinessNumber, tfMobileNumber, tfCompanyName, tfCountryRegion;
+    private TextInputLayout lFullName, lBusinessNumber, lMobileNumber, lCompanyName, lCountryRegion, lDatePicker;
+    private TextInputEditText tfFullName, tfBusinessNumber, tfMobileNumber, tfCompanyName, tfCountryRegion, tfDatePicker;
 
     public TicketAdminFragment() {
         // Required empty public constructor
@@ -59,6 +77,28 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
         fabAddContractor.setOnClickListener(this);
         btnAddContractor.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
+
+        final Calendar myCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(myCalendar);
+            }
+        };
+
+        tfDatePicker.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(getContext(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        updateSpinner();
+
         return scrollView;
     }
 
@@ -92,6 +132,7 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
         tfMobileNumber = v.findViewById(R.id.tfMobileNumber);
         tfCompanyName = v.findViewById(R.id.tfCompanyName);
         tfCountryRegion = v.findViewById(R.id.tfCountryRegion);
+        tfDatePicker = v.findViewById(R.id.tfDatePicker);
 
         // Layouts for setting errors
         lFullName = v.findViewById(R.id.lFullName);
@@ -99,12 +140,16 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
         lMobileNumber = v.findViewById(R.id.lMobileNumber);
         lCompanyName = v.findViewById(R.id.lCompanyName);
         lCountryRegion = v.findViewById(R.id.lCountryRegion);
+        lDatePicker = v.findViewById(R.id.lDatePicker);
 
         // Buttons for actions
         fabAddContractor = v.findViewById(R.id.fabAddContractor);
         addContractorPanel = v.findViewById(R.id.addContractorPanel);
         btnAddContractor = v.findViewById(R.id.btnAddContractor);
         btnCancel = v.findViewById(R.id.btnCancel);
+
+        //Spinner for contractors
+        spnContractors = v.findViewById(R.id.spinner2);
     }
 
     /**
@@ -263,5 +308,41 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
         } else {
             Toast.makeText(getContext(), "Please fill in all information", Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * Sets date picker text field to date chosen in date picker
+     */
+    private void updateLabel(Calendar cal) {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
+
+        tfDatePicker.setText(sdf.format(cal.getTime()));
+    }
+
+    /**
+     * Fires when the onCreate
+     * Updates the contractor spinner with contractors stored in the database
+     */
+    private void updateSpinner() {
+        // Create database instance
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final ArrayList contractors = new ArrayList();
+
+        db.collection("contractors").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        HashMap cFullName = (HashMap) document.get("fullName");
+                        String spnItem = "" + cFullName.get("firstName") + " " + cFullName.get("lastName") + " - " +  document.get("company");
+                        contractors.add(spnItem);
+                    }
+                    ArrayAdapter<String> conAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, contractors);
+                    conAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spnContractors.setAdapter(conAdapter);
+                }
+            }
+        });
     }
 }
