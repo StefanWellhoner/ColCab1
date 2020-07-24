@@ -26,22 +26,23 @@ public class OpenTicketsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        RecipientPagerAdapter recipientAdapter = new RecipientPagerAdapter(getChildFragmentManager());
+        OpenTicketAdapter recipientAdapter = new OpenTicketAdapter(getChildFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(recipientAdapter);
     }
 
 }
-class RecipientPagerAdapter extends FragmentStatePagerAdapter {
 
-    public RecipientPagerAdapter(@NonNull FragmentManager fm) {
+class OpenTicketAdapter extends FragmentStatePagerAdapter {
+
+    public OpenTicketAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return new ScheduledTicketsFragment();
             case 1:
