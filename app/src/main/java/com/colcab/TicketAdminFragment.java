@@ -293,6 +293,7 @@ public class TicketAdminFragment extends Fragment implements View.OnClickListene
                 @Override
                 // OnSuccess => when ticket has been saved in Firebase
                 public void onSuccess(DocumentReference documentReference) {
+                    updateSpinner();
                     Toast.makeText(getContext(), "Contractor was Added", Toast.LENGTH_LONG).show();
                     System.out.println("Document ID: " + documentReference.getId());
                     addContractorPanel.setVisibility(View.GONE);
