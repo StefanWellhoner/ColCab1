@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.colcab.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_logTicketFragment"
+            app:destination="@id/logTicketFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_openTicketsFragment"
+            app:destination="@id/openTicketsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_closedTicketsFragment"
+            app:destination="@id/closedTicketsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logTicketFragment"
+        android:name="com.colcab.LogTicketFragment"
+        android:label="fragment_log_ticket"
+        tools:layout="@layout/fragment_log_ticket" />
+    <fragment
+        android:id="@+id/openTicketsFragment"
+        android:name="com.colcab.OpenTicketsFragment"
+        android:label="fragment_open_tickets"
+        tools:layout="@layout/fragment_open_tickets">
+        <action
+            android:id="@+id/action_openTicketsFragment_to_viewOpenTicketFragment"
+            app:destination="@id/viewOpenTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/closedTicketsFragment"
+        android:name="com.colcab.ClosedTicketsFragment"
+        android:label="fragment_closed_tickets"
+        tools:layout="@layout/fragment_closed_tickets" />
+    <fragment
+        android:id="@+id/viewOpenTicketFragment"
+        android:name="com.colcab.ViewOpenTicketFragment"
+        android:label="fragment_view_open_ticket"
+        tools:layout="@layout/fragment_view_open_ticket" />
+</navigation>

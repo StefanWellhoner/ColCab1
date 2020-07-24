@@ -8,8 +8,8 @@
     <string name="nav_general">General</string>
     <string name="nav_home">Home</string>
     <string name="nav_log_ticket">Log Ticket</string>
-    <string name="nav_view_schedule">View Schedule</string>
-    <string name="nav_view_closed">View Closed Tickets</string>
+    <string name="nav_open_tickets">Open Tickets</string>
+    <string name="nav_closed_tickets">Closed Tickets</string>
     <string name="nav_exit">Exit</string>
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
@@ -104,4 +104,12 @@
         <item>Contractor 2</item>
         <item>Contractor 3</item>
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
