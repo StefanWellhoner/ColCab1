@@ -12,13 +12,25 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_logTicketFragment"
-            app:destination="@id/logTicketFragment" />
+            app:destination="@id/logTicketFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_openTicketsFragment"
-            app:destination="@id/openTicketsFragment" />
+            app:destination="@id/openTicketsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_closedTicketsFragment"
-            app:destination="@id/closedTicketsFragment" />
+            app:destination="@id/closedTicketsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/logTicketFragment"
@@ -32,7 +44,11 @@
         tools:layout="@layout/fragment_open_tickets">
         <action
             android:id="@+id/action_openTicketsFragment_to_viewOpenTicketFragment"
-            app:destination="@id/viewOpenTicketFragment" />
+            app:destination="@id/viewOpenTicketFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/closedTicketsFragment"

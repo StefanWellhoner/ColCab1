@@ -4,7 +4,7 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/logTicketFragment"
+            android:id="@+id/action_mainFragment_to_logTicketFragment"
             android:title="@string/nav_log_ticket" />
         <item
             android:id="@+id/mainFragment"

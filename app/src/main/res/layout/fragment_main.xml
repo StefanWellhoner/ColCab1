@@ -7,16 +7,19 @@
     tools:context=".MainFragment">
 
     <Button
+        android:id="@+id/btn_log_ticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnLogTicket" />
 
     <Button
+        android:id="@+id/btn_open_tickets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnOpenTickets" />
 
     <Button
+        android:id="@+id/btn_closed_tickets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnClosedTickets" />
