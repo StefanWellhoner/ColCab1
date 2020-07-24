@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.colcab.MainFragment"
-        android:label="fragment_main"
+        android:label="Home"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_logTicketFragment"
@@ -23,12 +23,12 @@
     <fragment
         android:id="@+id/logTicketFragment"
         android:name="com.colcab.LogTicketFragment"
-        android:label="fragment_log_ticket"
+        android:label="Log Ticket"
         tools:layout="@layout/fragment_log_ticket" />
     <fragment
         android:id="@+id/openTicketsFragment"
         android:name="com.colcab.OpenTicketsFragment"
-        android:label="fragment_open_tickets"
+        android:label="Open Tickets"
         tools:layout="@layout/fragment_open_tickets">
         <action
             android:id="@+id/action_openTicketsFragment_to_viewOpenTicketFragment"
@@ -37,11 +37,11 @@
     <fragment
         android:id="@+id/closedTicketsFragment"
         android:name="com.colcab.ClosedTicketsFragment"
-        android:label="fragment_closed_tickets"
+        android:label="Closed Tickets"
         tools:layout="@layout/fragment_closed_tickets" />
     <fragment
         android:id="@+id/viewOpenTicketFragment"
         android:name="com.colcab.ViewOpenTicketFragment"
-        android:label="fragment_view_open_ticket"
+        android:label="View Ticket"
         tools:layout="@layout/fragment_view_open_ticket" />
 </navigation>
