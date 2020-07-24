@@ -13,13 +13,13 @@
             android:label="@string/screen_open_ticket"
             android:parentActivityName=".HomePageActivity" />
         <activity
-            android:name=".ViewOpenTicketActivity"
+            android:name=".HomePageActivity"
             android:parentActivityName=".OpenTicketsActivity" />
         <activity
             android:name=".LogTicketActivity"
             android:label="@string/screen_log_ticket"
             android:parentActivityName=".HomePageActivity" />
-        <activity android:name=".HomePageActivity">
+        <activity android:name=".ViewOpenTicketActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
