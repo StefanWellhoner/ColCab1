@@ -1,9 +1,7 @@
 package com.colcab;
 
 import android.os.Bundle;
-import android.util.ArraySet;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,16 +9,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.Navigator;
-import androidx.navigation.fragment.FragmentNavigator;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.transition.Transition;
-import androidx.transition.TransitionInflater;
-
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-        final Set<Integer> topLevelDestinations = new ArraySet<>();
-        topLevelDestinations.add(R.id.mainFragment);
-        topLevelDestinations.add(R.id.openTicketsFragment);
-        topLevelDestinations.add(R.id.closedTicketsFragment);
+//        final Set<Integer> topLevelDestinations = new ArraySet<>();
+//        topLevelDestinations.add(R.id.mainFragment);
+//        topLevelDestinations.add(R.id.openTicketsFragment);
+//        topLevelDestinations.add(R.id.closedTicketsFragment);
 
-        appBarConfig = new AppBarConfiguration.Builder(topLevelDestinations).setDrawerLayout(drawerLayout).build();
+        appBarConfig = new AppBarConfiguration.Builder(R.id.mainFragment).setDrawerLayout(drawerLayout).build();
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
