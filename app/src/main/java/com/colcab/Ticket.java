@@ -1,10 +1,11 @@
 package com.colcab;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Map;
 
-public class UnscheduledTicket {
+public class Ticket {
     private String customer;
     private String customerPO;
     private String caseModel;
@@ -14,12 +15,14 @@ public class UnscheduledTicket {
     private String warranty;
     private String caseDescription;
     private Timestamp loggedDate;
+    private String scheduledDate;
+    private DocumentReference contractor;
 
-    public UnscheduledTicket() {
+    public Ticket() {
 
     }
 
-    public UnscheduledTicket(String customer, String customerPO, String caseModel, Map<String, String> requestedBy, boolean scheduled, String serialNumber, String warranty, String caseDescription, Timestamp loggedDate) {
+    public Ticket(String customer, String customerPO, String caseModel, Map<String, String> requestedBy, boolean scheduled, String serialNumber, String warranty, String caseDescription, Timestamp loggedDate, String scheduledDate, DocumentReference contractor) {
         this.customer = customer;
         this.customerPO = customerPO;
         this.caseModel = caseModel;
@@ -29,6 +32,8 @@ public class UnscheduledTicket {
         this.warranty = warranty;
         this.caseDescription = caseDescription;
         this.loggedDate = loggedDate;
+        this.scheduledDate = scheduledDate;
+        this.contractor = contractor;
     }
 
     public String getCustomer() {
@@ -65,5 +70,13 @@ public class UnscheduledTicket {
 
     public String getWarranty() {
         return warranty;
+    }
+
+    public String getScheduledDate() {
+        return scheduledDate;
+    }
+
+    public DocumentReference getContractor() {
+        return contractor;
     }
 }
