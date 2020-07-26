@@ -1,4 +1,4 @@
-package com.colcab;
+package com.colcab.fragments;
 
 import android.os.Bundle;
 
@@ -8,14 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ClosedTicketsFragment extends Fragment {
+import com.colcab.R;
 
-    public ClosedTicketsFragment() {
+public class ViewTicketNotesFragment extends Fragment {
+
+    public ViewTicketNotesFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_closed_tickets, container, false);
+        return inflater.inflate(R.layout.fragment_view_ticket_notes, container, false);
     }
 }

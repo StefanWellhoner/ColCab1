@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogTicketFragment">
+    tools:context=".fragments.LogTicketFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,8 @@
             style="@style/Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/lblWarranty">
+            android:hint="@string/lblWarranty"
+            app:boxStrokeColor="#FFFFFF">
 
             <AutoCompleteTextView
                 android:id="@+id/spnWarranty"
@@ -121,11 +122,13 @@
                 android:id="@+id/tfCustomerPO"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_log_ticket"
             style="@style/Widget.ColCab.Button"
             android:layout_width="match_parent"
             android:layout_height="64dp"

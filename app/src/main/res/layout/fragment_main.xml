@@ -4,29 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainFragment">
+    android:padding="16dp"
+    tools:context=".fragments.MainFragment">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_log_ticket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.ColCab.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:text="@string/btnLogTicket" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_open_tickets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.ColCab.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:text="@string/btnOpenTickets" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_closed_tickets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.ColCab.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:text="@string/btnClosedTickets" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerInside"
         android:src="@drawable/site_logo" />
 
 </LinearLayout>

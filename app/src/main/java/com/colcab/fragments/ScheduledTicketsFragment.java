@@ -1,4 +1,4 @@
-package com.colcab;
+package com.colcab.fragments;
 
 import android.os.Bundle;
 
@@ -14,36 +14,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.colcab.R;
+import com.colcab.models.Ticket;
+import com.colcab.adapters.ScheduledTicketAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class UnscheduledTicketsFragment extends Fragment {
+public class ScheduledTicketsFragment extends Fragment {
 
     private NavController navController;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference ticketsRef = db.collection("tickets");
-    private UnscheduledTicketAdapter adapter;
+    private ScheduledTicketAdapter adapter;
 
-    public UnscheduledTicketsFragment() {
+    public ScheduledTicketsFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_unscheduled_tickets, container, false);
-        Query query = ticketsRef.orderBy("loggedDate", Query.Direction.DESCENDING).whereEqualTo("scheduled", false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_scheduled_tickets, container, false);
+        Query query = ticketsRef.orderBy("loggedDate", Query.Direction.DESCENDING).whereEqualTo("scheduled", true);
         FirestoreRecyclerOptions<Ticket> options = new FirestoreRecyclerOptions.Builder<Ticket>().setQuery(query, Ticket.class).build();
-        adapter = new UnscheduledTicketAdapter(options);
+        adapter = new ScheduledTicketAdapter(options);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new UnscheduledTicketAdapter.onItemClickListener() {
+        adapter.setOnItemClickListener(new ScheduledTicketAdapter.onItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                navController.navigate(R.id.action_openTicketsFragment_to_viewOpenTicketFragment);
+                Bundle args = new Bundle();
+                args.putString(ViewOpenTicketFragment.TICKET_ID, documentSnapshot.getId());
+                navController.navigate(R.id.action_openTicketsFragment_to_viewOpenTicketFragment,args);
             }
         });
         return recyclerView;

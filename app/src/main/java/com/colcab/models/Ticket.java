@@ -1,4 +1,4 @@
-package com.colcab;
+package com.colcab.models;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;

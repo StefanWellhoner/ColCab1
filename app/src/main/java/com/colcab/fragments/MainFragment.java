@@ -1,4 +1,4 @@
-package com.colcab;
+package com.colcab.fragments;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.colcab.R;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
 
