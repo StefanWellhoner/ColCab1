@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.colcab.R;
 import com.colcab.adapters.ViewTicketPagerAdapter;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ViewOpenTicketFragment extends Fragment {
 
@@ -64,6 +65,9 @@ public class ViewOpenTicketFragment extends Fragment {
                         || super.onOptionsItemSelected(item);
             case R.id.view_ticket_delete:
                 Toast.makeText(getContext(), "Delete ticket: " + getArguments().getString(TICKET_ID), Toast.LENGTH_SHORT).show();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("tickets").document(getArguments().getString(TICKET_ID)).delete();
+                Navigation.findNavController(getView()).navigateUp();
                 break;
             case R.id.view_ticket_close:
                 Toast.makeText(getContext(), "Close ticket: " + getArguments().getString(TICKET_ID), Toast.LENGTH_SHORT).show();

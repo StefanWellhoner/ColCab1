@@ -29,10 +29,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.model.Document;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -53,12 +57,14 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     private TextInputLayout lFullName, lBusinessNumber, lMobileNumber, lCompanyName, lCountryRegion, lDatePicker;
     private TextInputEditText tfFullName, tfBusinessNumber, tfMobileNumber, tfCompanyName, tfCountryRegion, tfDatePicker;
 
+    private ArrayList<String> contractors;
+    private ArrayAdapter<String> conAdapter;
+
     public ViewTicketAdminFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ScrollView scrollView = (ScrollView) inflater.inflate(R.layout.fragment_view_ticket_admin, container, false);
         initComponents(scrollView);
         initOnKeyListeners();
@@ -84,9 +90,19 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                 new DatePickerDialog(getContext(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-        updateSpinner();
+        contractors = new ArrayList<>();
+        conAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, contractors);
+        conAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnContractors.setAdapter(conAdapter);
+        contractors.add("Select a Contractor");
+//        updateSpinner();
         return scrollView;
+    }
+
+    @Override
+    public void onStart() {
+        listenContractorChanges();
+        super.onStart();
     }
 
     /**
@@ -261,7 +277,6 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                 @Override
                 // OnSuccess => when ticket has been saved in Firebase
                 public void onSuccess(DocumentReference documentReference) {
-                    updateSpinner();
                     Toast.makeText(getContext(), "Contractor was Added", Toast.LENGTH_LONG).show();
                     System.out.println("Document ID: " + documentReference.getId());
                     addContractorPanel.setVisibility(View.GONE);
@@ -290,27 +305,36 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     }
 
     /**
-     * Fires when the onCreate
-     * Updates the contractor spinner with contractors stored in the database
+     * Method that listens for changes made to contractors collection
      */
-    private void updateSpinner() {
-        // Create database instance
+    private void listenContractorChanges() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final ArrayList<String> contractors = new ArrayList<>();
-        final ArrayAdapter<String> conAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, contractors);
-        conAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnContractors.setAdapter(conAdapter);
-        contractors.add("Select a Contractor");
-        db.collection("contractors").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("contractors").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        HashMap<String, String> cFullName = (HashMap<String, String>) document.get("fullName");
-                        String spnItem = cFullName.get("firstName") + " " + cFullName.get("lastName") + " - " + document.get("company");
-                        contractors.add(spnItem);
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.d("Error", "contractor listening error" + error);
+                }
+                for (DocumentChange dc : value.getDocumentChanges()) {
+                    QueryDocumentSnapshot contractor = dc.getDocument();
+                    Map<String, String> fullName = (Map<String, String>) contractor.get("fullName");
+                    String firstName = fullName.get("firstName");
+                    String lastName = fullName.get("lastName");
+                    String company = contractor.getString("company");
+                    switch (dc.getType()) {
+                        case ADDED:
+                            contractors.add(firstName + " " + lastName + " - " + company);
+                            conAdapter.notifyDataSetChanged();
+                            break;
+                        case MODIFIED:
+                            contractors.set(dc.getNewIndex() + 1, firstName + " " + lastName + " - " + company);
+                            conAdapter.notifyDataSetChanged();
+                            break;
+                        case REMOVED:
+                            contractors.remove(dc.getOldIndex() + 1);
+                            conAdapter.notifyDataSetChanged();
+                            break;
                     }
-                    conAdapter.notifyDataSetChanged();
                 }
             }
         });
