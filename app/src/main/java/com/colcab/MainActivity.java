@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+
     private NavController navController;
     private AppBarConfiguration appBarConfig;
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
 //        final Set<Integer> topLevelDestinations = new ArraySet<>();
