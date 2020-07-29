@@ -49,7 +49,11 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     private Button btnAddContractor, btnCancel;
     private Spinner spnContractors;
 
-    private TextInputLayout lFullName, lBusinessNumber, lMobileNumber, lCompanyName, lCountryRegion, lDatePicker;
+    private TextInputLayout lFullName;
+    private TextInputLayout lBusinessNumber;
+    private TextInputLayout lMobileNumber;
+    private TextInputLayout lCompanyName;
+    private TextInputLayout lCountryRegion;
     private TextInputEditText tfFullName, tfBusinessNumber, tfMobileNumber, tfCompanyName, tfCountryRegion, tfDatePicker;
 
     private ArrayList<String> contractors;
@@ -119,7 +123,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         lMobileNumber = v.findViewById(R.id.lMobileNumber);
         lCompanyName = v.findViewById(R.id.lCompanyName);
         lCountryRegion = v.findViewById(R.id.lCountryRegion);
-        lDatePicker = v.findViewById(R.id.lDatePicker);
+        TextInputLayout lDatePicker = v.findViewById(R.id.lDatePicker);
 
         // Buttons for actions
         fabAddContractor = v.findViewById(R.id.fabAddContractor);
@@ -312,9 +316,9 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                 }
                 for (DocumentChange dc : value.getDocumentChanges()) {
                     QueryDocumentSnapshot contractor = dc.getDocument();
-                    Map<String, String> fullName = (Map<String, String>) contractor.get("fullName");
-                    String firstName = fullName.get("firstName");
-                    String lastName = fullName.get("lastName");
+                    Map<String, Object> fullName = (Map<String, Object>)contractor.get("fullName");
+                    String firstName = fullName.get("firstName").toString();
+                    String lastName = fullName.get("lastName").toString();
                     String company = contractor.getString("company");
                     switch (dc.getType()) {
                         case ADDED:
