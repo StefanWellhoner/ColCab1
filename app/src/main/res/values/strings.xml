@@ -81,8 +81,8 @@
     <string name="btnSave">Save Changes</string>
 
     <!--    Edit Ticket Options Menu-->
-    <string name="option_delete">Delete</string>
-    <string name="option_close">Close</string>
+    <string name="option_delete">Delete Ticket</string>
+    <string name="option_close">Close Ticket</string>
 
     <string name="dp_contractors">Select Date</string>
     <string name="add_notes">Add Notes</string>
