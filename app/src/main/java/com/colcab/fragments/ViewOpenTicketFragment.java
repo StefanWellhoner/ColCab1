@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.colcab.R;
@@ -27,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ViewOpenTicketFragment extends Fragment {
 
@@ -77,8 +80,15 @@ public class ViewOpenTicketFragment extends Fragment {
                 Navigation.findNavController(getView()).navigateUp();
                 break;
             case R.id.view_ticket_close:
-//                Toast.makeText(getContext(), "Close ticket: " + getArguments().getString(TICKET_ID), Toast.LENGTH_SHORT).show();
-                
+                //@TODO make fullscreen dialog
+                FullScreenDialogFragment dialog = FullScreenDialogFragment.newInstance();
+                dialog.show(getChildFragmentManager(), "TAG");
+                dialog.setCallback(new FullScreenDialogFragment.Callback() {
+                    @Override
+                    public void onActionClick(HashMap<String, Object> data) {
+
+                    }
+                });
                 break;
         }
         return true;
@@ -91,8 +101,8 @@ public class ViewOpenTicketFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    HashMap data = (HashMap)document.getData();
+                if (document != null && document.exists()) {
+                    Map<String, Object> data = document.getData();
                     ViewTicketInfoFragment.fillFields(data);
                 }
             }
