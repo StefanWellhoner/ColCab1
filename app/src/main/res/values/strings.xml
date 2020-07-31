@@ -108,4 +108,35 @@
         <item>Contractor 2</item>
         <item>Contractor 3</item>
     </string-array>
+    //Closed Ticket
+    <string name="failure_type">Failure Type</string>
+    <string name="amount_due">Amount Due</string>
+    <string name="category_type">Category Type</string>
+    <string name="root_cause">Root Cause</string>
+    <string name="client_feedback">Client Feedback</string>
+    <string name="save_as">Save As</string>
+    <string name="button_close">Close Ticket</string>
+
+    <string-array name="spnFailureTypes">
+        <item>Choose Failure Types</item>
+        <item>Failure Types 1</item>
+        <item>Failure Types</item>
+        <item>Failure Types</item>
+    </string-array>
+
+    <string-array name="spnCategoryTypes">
+        <item>Choose Category Types</item>
+        <item>Category Type 1</item>
+        <item>Category Type 2</item>
+        <item>Category Type 3</item>
+    </string-array>
+
+    <string-array name="spnCATSs">
+        <item>Satisfaction level</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>
