@@ -10,7 +10,6 @@ import com.colcab.R;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
-    private NotesAdapter.onItemLongClickListener listener;
     private List<String> notes;
 
     public class NotesViewHolder extends RecyclerView.ViewHolder{
@@ -18,16 +17,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         public NotesViewHolder(View v){
             super(v);
             textView = v.findViewById(R.id.ticket_note);
-            v.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    int position = getAdapterPosition();
-                    if(position != RecyclerView.NO_POSITION && listener != null){
-                        listener.onLongItemClick(position);
-                    }
-                    return true;
-                }
-            });
         }
     }
 
@@ -51,13 +40,5 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     @Override
     public int getItemCount() {
         return notes.size();
-    }
-
-    public interface onItemLongClickListener{
-        void onLongItemClick(int position);
-    }
-
-    public void setOnLongItemClickListener(NotesAdapter.onItemLongClickListener listener){
-        this.listener = listener;
     }
 }

@@ -119,7 +119,7 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         switch (id) {
             case R.id.btnCloseTicket:
                 HashMap<String, Object> data = new HashMap<>();
-                data.put("data1", "Data");
+                data.put("data1", "jfnnvcqwfmqk");
                 callback.onActionClick(data);
                 dismiss();
                 break;
