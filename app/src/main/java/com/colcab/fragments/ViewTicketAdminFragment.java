@@ -46,7 +46,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
 
     private FloatingActionButton fabAddContractor;
     private LinearLayout addContractorPanel;
-    private Button btnAddContractor, btnCancel;
+    private Button btnAddContractor, btnCancel, btnScheduleTicket;
     private Spinner spnContractors;
 
     private TextInputLayout lFullName;
@@ -54,6 +54,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     private TextInputLayout lMobileNumber;
     private TextInputLayout lCompanyName;
     private TextInputLayout lCountryRegion;
+    private TextInputLayout lDatePicker;
     private TextInputEditText tfFullName, tfBusinessNumber, tfMobileNumber, tfCompanyName, tfCountryRegion, tfDatePicker;
 
     private ArrayList<String> contractors;
@@ -70,6 +71,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         fabAddContractor.setOnClickListener(this);
         btnAddContractor.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
+        btnScheduleTicket.setOnClickListener(this);
 
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -123,13 +125,14 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         lMobileNumber = v.findViewById(R.id.lMobileNumber);
         lCompanyName = v.findViewById(R.id.lCompanyName);
         lCountryRegion = v.findViewById(R.id.lCountryRegion);
-        TextInputLayout lDatePicker = v.findViewById(R.id.lDatePicker);
+        lDatePicker = v.findViewById(R.id.lDatePicker);
 
         // Buttons for actions
         fabAddContractor = v.findViewById(R.id.fabAddContractor);
         addContractorPanel = v.findViewById(R.id.addContractorPanel);
         btnAddContractor = v.findViewById(R.id.btnAddContractor);
         btnCancel = v.findViewById(R.id.btnCancel);
+        btnScheduleTicket = v.findViewById(R.id.btnScheduleTicket);
 
         //Spinner for contractors
         spnContractors = v.findViewById(R.id.spinner2);
@@ -303,6 +306,37 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         tfDatePicker.setText(sdf.format(cal.getTime()));
     }
 
+
+    /**
+     * Schedules Ticket
+     */
+    private void scheduleTicket(){
+        String isContractorChosen = spnContractors.getSelectedItem().toString();
+        String result = tfDatePicker.getText().toString();
+
+        if(result.equals("")){
+            lDatePicker.setError("Date can't be empty");
+
+        }else if(isContractorChosen == "Select a Contractor"){
+            Toast.makeText(getContext(), "A Contractor Must Be Selected", Toast.LENGTH_LONG).show();
+        }else{
+
+
+
+
+
+            Toast.makeText(getContext(), "Ticket Has Been Successfully Scheduled", Toast.LENGTH_LONG).show();
+        }
+
+
+
+
+
+
+
+
+    }
+
     /**
      * Method that listens for changes made to contractors collection
      */
@@ -352,6 +386,9 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
             case R.id.btnCancel:
                 addContractorPanel.setVisibility(View.GONE);
                 fabAddContractor.setVisibility(View.VISIBLE);
+                break;
+            case R.id.btnScheduleTicket:
+             scheduleTicket();
                 break;
             default:
                 break;
