@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".FullScreenDialog">
 
     // Failure Type spinner
@@ -18,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< HEAD
     // Failure Amount
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lblFailureAmount"
@@ -29,6 +31,28 @@
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spnFailureTypes">
+=======
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edtSaveAs"
+        style="@style/Widget.ColCab.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tfSerialNo"
+        app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtClientFeedback">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSaveAs1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:inputType="text"
+            android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+>>>>>>> 686e679a68dfbe5eaab1ddb3a7e7d360021310c9
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtAmountDueFailure"
