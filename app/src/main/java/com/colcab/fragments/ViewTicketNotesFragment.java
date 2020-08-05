@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -72,12 +73,17 @@ public class ViewTicketNotesFragment extends Fragment implements View.OnClickLis
                 notes = (value.get("notes") != null) ? (List<String>) value.get("notes") : new ArrayList<String>();
                 mAdapter = new NotesAdapter(notes);
                 recyclerView.setAdapter(mAdapter);
-                mAdapter.setOnLongItemClickListener(new NotesAdapter.onItemLongClickListener() {
+                new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
                     @Override
-                    public void onLongItemClick(int position) {
-                        currentTicketRef.update("notes", FieldValue.arrayRemove(notes.get(position)));
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                        return false;
                     }
-                });
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                        currentTicketRef.update("notes", FieldValue.arrayRemove(notes.get(viewHolder.getAdapterPosition())));
+                    }
+                }).attachToRecyclerView(recyclerView);
             }
         });
     }

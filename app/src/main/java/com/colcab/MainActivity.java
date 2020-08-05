@@ -1,6 +1,7 @@
 package com.colcab;
 
 import android.os.Bundle;
+import android.util.ArraySet;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -32,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-//        final Set<Integer> topLevelDestinations = new ArraySet<>();
-//        topLevelDestinations.add(R.id.mainFragment);
-//        topLevelDestinations.add(R.id.openTicketsFragment);
-//        topLevelDestinations.add(R.id.closedTicketsFragment);
+        final Set<Integer> topLevelDestinations = new ArraySet<>();
+        topLevelDestinations.add(R.id.mainFragment);
+        topLevelDestinations.add(R.id.addContractorFragment);
 
-        appBarConfig = new AppBarConfiguration.Builder(R.id.mainFragment).setDrawerLayout(drawerLayout).build();
+        appBarConfig = new AppBarConfiguration.Builder(topLevelDestinations).setDrawerLayout(drawerLayout).build();
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
