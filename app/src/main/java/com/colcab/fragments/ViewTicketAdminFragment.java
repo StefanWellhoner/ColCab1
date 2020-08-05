@@ -102,6 +102,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onStart() {
+        conAdapter.clear();
         listenContractorChanges();
         super.onStart();
     }
@@ -306,35 +307,18 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         tfDatePicker.setText(sdf.format(cal.getTime()));
     }
 
-
     /**
      * Schedules Ticket
      */
-    private void scheduleTicket(){
-        String isContractorChosen = spnContractors.getSelectedItem().toString();
+    private void scheduleTicket() {
         String result = tfDatePicker.getText().toString();
-
-        if(result.equals("")){
+        if (result.equals("")) {
             lDatePicker.setError("Date can't be empty");
-
-        }else if(isContractorChosen == "Select a Contractor"){
+        } else if (spnContractors.getSelectedItemPosition() == 0) {
             Toast.makeText(getContext(), "A Contractor Must Be Selected", Toast.LENGTH_LONG).show();
-        }else{
-
-
-
-
-
-            Toast.makeText(getContext(), "Ticket Has Been Successfully Scheduled", Toast.LENGTH_LONG).show();
+        } else {
+            String ticketid = ViewOpenTicketFragment.ticketID;
         }
-
-
-
-
-
-
-
-
     }
 
     /**
@@ -350,7 +334,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                 }
                 for (DocumentChange dc : value.getDocumentChanges()) {
                     QueryDocumentSnapshot contractor = dc.getDocument();
-                    Map<String, Object> fullName = (Map<String, Object>)contractor.get("fullName");
+                    Map<String, Object> fullName = (Map<String, Object>) contractor.get("fullName");
                     String firstName = fullName.get("firstName").toString();
                     String lastName = fullName.get("lastName").toString();
                     String company = contractor.getString("company");
@@ -388,7 +372,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                 fabAddContractor.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnScheduleTicket:
-             scheduleTicket();
+                scheduleTicket();
                 break;
             default:
                 break;
