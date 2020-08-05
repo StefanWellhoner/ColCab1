@@ -44,10 +44,10 @@ import java.util.Map;
 
 public class ViewTicketAdminFragment extends Fragment implements View.OnClickListener {
 
+    private Button btnScheduleTicket;
+    private TextInputLayout lDatePicker;
     private Spinner spnContractors;
-
     private TextInputEditText tfDatePicker;
-
     private ArrayList<String> contractors;
     private ArrayAdapter<String> conAdapter;
 
@@ -58,6 +58,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ScrollView scrollView = (ScrollView) inflater.inflate(R.layout.fragment_view_ticket_admin, container, false);
         initComponents(scrollView);
+        btnScheduleTicket.setOnClickListener(this);
 
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -87,6 +88,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onStart() {
+        conAdapter.clear();
         listenContractorChanges();
         super.onStart();
     }
@@ -98,10 +100,8 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     private void initComponents(View v) {
         // Text fields containing user's entered data
         tfDatePicker = v.findViewById(R.id.tfDatePicker);
-
+        btnScheduleTicket = v.findViewById(R.id.btnScheduleTicket);
         TextInputLayout lDatePicker = v.findViewById(R.id.lDatePicker);
-
-        //Spinner for contractors
         spnContractors = v.findViewById(R.id.spinner2);
     }
 
@@ -113,6 +113,20 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
 
         tfDatePicker.setText(sdf.format(cal.getTime()));
+    }
+
+    /**
+     * Schedules Ticket
+     */
+    private void scheduleTicket() {
+        String result = tfDatePicker.getText().toString();
+        if (result.equals("")) {
+            lDatePicker.setError("Date can't be empty");
+        } else if (spnContractors.getSelectedItemPosition() == 0) {
+            Toast.makeText(getContext(), "A Contractor Must Be Selected", Toast.LENGTH_LONG).show();
+        } else {
+            String ticketid = ViewOpenTicketFragment.ticketID;
+        }
     }
 
     /**
@@ -128,7 +142,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                 }
                 for (DocumentChange dc : value.getDocumentChanges()) {
                     QueryDocumentSnapshot contractor = dc.getDocument();
-                    Map<String, Object> fullName = (Map<String, Object>)contractor.get("fullName");
+                    Map<String, Object> fullName = (Map<String, Object>) contractor.get("fullName");
                     String firstName = fullName.get("firstName").toString();
                     String lastName = fullName.get("lastName").toString();
                     String company = contractor.getString("company");
@@ -153,5 +167,12 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnScheduleTicket:
+                scheduleTicket();
+                break;
+            default:
+                break;
+        }
     }
 }
