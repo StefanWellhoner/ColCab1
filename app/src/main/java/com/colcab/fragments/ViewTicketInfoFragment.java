@@ -120,6 +120,8 @@ public class ViewTicketInfoFragment extends Fragment implements View.OnClickList
     private void updateFields() {
         String fullname = tfReqBy.getText().toString();
 
+        //@TODO split FullName method
+
         String reqName = fullname.substring(0, fullname.indexOf(" "));
         String reqSurname = fullname.substring(fullname.indexOf(" ") + 1);
 
