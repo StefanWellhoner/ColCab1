@@ -82,15 +82,19 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         conAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, contractors);
         conAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnContractors.setAdapter(conAdapter);
-        contractors.add("Select a Contractor");
         return scrollView;
     }
 
     @Override
     public void onStart() {
-        conAdapter.clear();
         listenContractorChanges();
         super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        conAdapter.clear();
+        super.onStop();
     }
 
     /**
@@ -101,7 +105,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         // Text fields containing user's entered data
         tfDatePicker = v.findViewById(R.id.tfDatePicker);
         btnScheduleTicket = v.findViewById(R.id.btnScheduleTicket);
-        TextInputLayout lDatePicker = v.findViewById(R.id.lDatePicker);
+        lDatePicker = v.findViewById(R.id.lDatePicker);
         spnContractors = v.findViewById(R.id.spinner2);
     }
 
@@ -132,34 +136,43 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     /**
      * Method that listens for changes made to contractors collection
      */
+    @SuppressWarnings("unchecked")
     private void listenContractorChanges() {
+        contractors.add("Select a Contractor");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("contractors").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
                     Log.d("Error", "contractor listening error" + error);
+                    Toast.makeText(getContext(), "An Error Occurred", Toast.LENGTH_SHORT).show();
                 }
-                for (DocumentChange dc : value.getDocumentChanges()) {
-                    QueryDocumentSnapshot contractor = dc.getDocument();
-                    Map<String, Object> fullName = (Map<String, Object>) contractor.get("fullName");
-                    String firstName = fullName.get("firstName").toString();
-                    String lastName = fullName.get("lastName").toString();
-                    String company = contractor.getString("company");
-                    switch (dc.getType()) {
-                        case ADDED:
-                            contractors.add(firstName + " " + lastName + " - " + company);
-                            conAdapter.notifyDataSetChanged();
-                            break;
-                        case MODIFIED:
-                            contractors.set(dc.getNewIndex() + 1, firstName + " " + lastName + " - " + company);
-                            conAdapter.notifyDataSetChanged();
-                            break;
-                        case REMOVED:
-                            contractors.remove(dc.getOldIndex() + 1);
-                            conAdapter.notifyDataSetChanged();
-                            break;
+                try {
+                    if (value != null) {
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            QueryDocumentSnapshot contractor = dc.getDocument();
+                            Map<String, Object> fullName = (Map<String, Object>) contractor.get("fullName");
+                            String firstName = String.valueOf(fullName.get("firstName"));
+                            String lastName = String.valueOf(fullName.get("lastName"));
+                            String company = contractor.getString("company");
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    contractors.add(firstName + " " + lastName + " - " + company);
+                                    conAdapter.notifyDataSetChanged();
+                                    break;
+                                case MODIFIED:
+                                    contractors.set(dc.getNewIndex() + 1, firstName + " " + lastName + " - " + company);
+                                    conAdapter.notifyDataSetChanged();
+                                    break;
+                                case REMOVED:
+                                    contractors.remove(dc.getOldIndex() + 1);
+                                    conAdapter.notifyDataSetChanged();
+                                    break;
+                            }
+                        }
                     }
+                } catch (Exception e) {
+                    Log.d("Firebase Exception", "Error: " + e.getMessage());
                 }
             }
         });
@@ -167,12 +180,8 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnScheduleTicket:
-                scheduleTicket();
-                break;
-            default:
-                break;
+        if (view.getId() == R.id.btnScheduleTicket) {
+            scheduleTicket();
         }
     }
 }
