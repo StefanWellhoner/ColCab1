@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.colcab.R;
@@ -37,12 +35,14 @@ public class ViewOpenTicketFragment extends Fragment {
 
     public static final String TICKET_ID = "ticketID";
     public static String ticketID;
+    public static boolean condition;
 
     public ViewOpenTicketFragment() {
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        condition = false;
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         ticketID = getArguments().getString(TICKET_ID);
