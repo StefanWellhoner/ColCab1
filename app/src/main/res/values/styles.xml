@@ -47,4 +47,9 @@
         <item name="backgroundTint">@color/colorSecondary</item>
     </style>
 
+    <style name="Widget.ColCab.Button.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="tint">@color/colorWhite</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
 </resources>

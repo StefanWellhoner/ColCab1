@@ -10,5 +10,5 @@
         android:id="@+id/view_ticket_close"
         android:icon="@drawable/ic_close_24"
         android:title="@string/option_close"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>

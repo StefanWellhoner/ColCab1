@@ -30,9 +30,12 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_addContractorFragment"
+            app:destination="@id/addContractorFragment" />
     </fragment>
     <fragment
-        android:id="@id/logTicketFragment"
+        android:id="@+id/logTicketFragment"
         android:name="com.colcab.fragments.LogTicketFragment"
         android:label="@string/nav_log_ticket"
         tools:layout="@layout/fragment_log_ticket" />
@@ -59,4 +62,9 @@
         android:name="com.colcab.fragments.ViewOpenTicketFragment"
         android:label="View Tickets"
         tools:layout="@layout/fragment_view_open_ticket" />
+    <fragment
+        android:id="@id/addContractorFragment"
+        android:name="com.colcab.fragments.AddContractorFragment"
+        android:label="fragment_add_contractor"
+        tools:layout="@layout/fragment_add_contractor" />
 </navigation>

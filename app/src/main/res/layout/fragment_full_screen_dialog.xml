@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -19,19 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<<<<<<< HEAD
-    // Failure Amount
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/lblFailureAmount"
-        style="@style/Widget.ColCab.TextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="@string/amount_due"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnFailureTypes">
-=======
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtSaveAs"
         style="@style/Widget.ColCab.TextInputLayout"
@@ -51,8 +39,17 @@
             android:maxLines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-
->>>>>>> 686e679a68dfbe5eaab1ddb3a7e7d360021310c9
+  // Failure Amount
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lblFailureAmount"
+        style="@style/Widget.ColCab.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/amount_due"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spnFailureTypes">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtAmountDueFailure"
@@ -177,3 +174,4 @@
     </com.google.android.material.button.MaterialButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+  </LinearLayout>

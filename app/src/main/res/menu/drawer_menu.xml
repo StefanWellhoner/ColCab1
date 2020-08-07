@@ -8,9 +8,9 @@
             android:icon="@drawable/ic_home_24"
             android:title="@string/nav_home" />
         <item
-            android:id="@+id/logTicketFragment"
+            android:id="@+id/addContractorFragment"
             android:icon="@drawable/ic_log_ticket_24"
-            android:title="@string/nav_log_ticket" />
+            android:title="@string/btnAddContractor" />
         <item
             android:id="@+id/openTicketsFragment"
             android:icon="@drawable/ic_open_tickets_24"
