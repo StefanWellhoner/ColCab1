@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "143312277905",
+    "firebase_url": "https://colcab.firebaseio.com",
+    "project_id": "colcab",
+    "storage_bucket": "colcab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143312277905:android:677d07fb1939e5ba8c0a30",
+        "android_client_info": {
+          "package_name": "com.colcab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143312277905-p3brbgk865c4nr5gr0oeso8b52h1vt23.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.colcab",
+            "certificate_hash": "0b092d38b5e8f0ecd2b25675675df25974b73f66"
+          }
+        },
+        {
+          "client_id": "143312277905-mrb5r9hnmg1ttu35e483s2oujucbd5s4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.colcab",
+            "certificate_hash": "a490d2c7044728f1bd1f61ab572557f57edaa910"
+          }
+        },
+        {
+          "client_id": "143312277905-v5tthoajoto9qc1k2i4res77to1bs0oh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqu1_xu_r_SymJaX9SIE2VdiJFKKTlWGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143312277905-v5tthoajoto9qc1k2i4res77to1bs0oh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

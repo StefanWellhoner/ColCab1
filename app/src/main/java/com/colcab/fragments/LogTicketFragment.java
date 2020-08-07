@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.colcab.R;
@@ -32,6 +34,7 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
     private TextInputLayout lCustomer, lSerialNumber, lCaseModel, lCaseDesc, lReqBy, lCustomerPO;
     private TextInputEditText tfCustomer, tfSerialNum, tfCaseModel, tfCaseDesc, tfRequestedBy, tfCustomerPO;
     private AutoCompleteTextView spnWarranty;
+    private FrameLayout loadingBar;
 
     public LogTicketFragment() {
     }
@@ -46,6 +49,8 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         initComponents(view);
         initOnKeyListeners();
         view.findViewById(R.id.btn_log_ticket).setOnClickListener(this);
+
+        loadingBar = getActivity().findViewById(R.id.loadingBar);
     }
 
     /**
@@ -185,6 +190,7 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
      * When the log ticket button is clicked a ticket will be logged and saved in firebase
      */
     public void onLogTicket() {
+        loadingBar.setVisibility(View.VISIBLE);
         // Get text from text fields entered by user
         String customer = tfCustomer.getText().toString();
         String warranty = spnWarranty.getText().toString();
@@ -229,12 +235,14 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
                 public void onSuccess(DocumentReference documentReference) {
                     Toast.makeText(getContext(), "Ticket was Logged", Toast.LENGTH_LONG).show();
                     System.out.println("Document ID: " + documentReference.getId());
+                    loadingBar.setVisibility(View.GONE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 // OnFailure => Error has occurred (TAG: Firebase Error:)
                 public void onFailure(@NonNull Exception e) {
                     Log.d("Firebase Error: ", e.getMessage());
+                    loadingBar.setVisibility(View.GONE);
                 }
             });
         } else {

@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -50,7 +51,7 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
     private String categoryType;
     private String clientCSAT;
 
-    private TextView lblAmountDue, lblAmountDue1, lblCategoryType, lblFailureType, lblRootCause, lblClientFeedback, lblSaveAs, pageTitle;
+    private TextInputLayout lblAmountDue, lblAmountDue1, lblCategoryType, lblFailureType, lblRootCause, lblClientFeedback, lblSaveAs, pageTitle;
     private EditText edtAmountDueCategory, edtAmountDueFailure, edtClientFeedback, edtSaveAs, edtRootCause;
     private Spinner spnCategoryTypes, spnFailureTypes, spnCSATs;
     private Button btnCloseTicket;
@@ -85,24 +86,15 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
 
     private void initComponents(View v) {
         // Spinners
-        spnFailureTypes = v.findViewById(R.id.spnFailureType);
-        spnCategoryTypes = v.findViewById(R.id.spnCategoryType);
+        spnFailureTypes = v.findViewById(R.id.spnFailureTypes);
+        spnCategoryTypes = v.findViewById(R.id.spnCategoryTypes);
         spnCSATs = v.findViewById(R.id.spnCSAT);
 
         // Layouts for setting errors
-        lblAmountDue = v.findViewById(R.id.lblAmountDue);
-        lblAmountDue1 = v.findViewById(R.id.lblAmountDue1);
-        lblCategoryType = v.findViewById(R.id.lblCategoryType);
-        lblFailureType = v.findViewById(R.id.lblFailureType);
-        lblRootCause = v.findViewById(R.id.lblRootCause);
-        lblClientFeedback = v.findViewById(R.id.lblClientFeedback);
-        lblSaveAs = v.findViewById(R.id.lblSaveAs);
-        pageTitle = v.findViewById(R.id.pageTitle);
-
-        edtAmountDueCategory = v.findViewById(R.id.edtAmountDueCategory);
-        edtAmountDueFailure = v.findViewById(R.id.edtAmountDueFailure);
-        edtClientFeedback = v.findViewById(R.id.edtClientFeedback);
-        edtSaveAs = v.findViewById(R.id.edtSaveAs);
+        lblAmountDue = v.findViewById(R.id.lAmountDue);
+        lblRootCause = v.findViewById(R.id.lRootCause);
+        lblClientFeedback = v.findViewById(R.id.lClientFeedback);
+        lblSaveAs = v.findViewById(R.id.lSaveAs);
 
         // Buttons for actions
         btnCloseTicket = v.findViewById(R.id.btnCloseTicket);

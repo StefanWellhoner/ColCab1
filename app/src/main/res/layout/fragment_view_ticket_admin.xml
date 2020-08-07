@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -16,9 +17,6 @@
             style="@style/Widget.ColCab.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:hint="@string/dp_contractors"
             app:endIconMode="clear_text"
             app:endIconDrawable="@drawable/ic_close_24"
@@ -38,20 +36,14 @@
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="46dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:entries="@array/spnContractors" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnScheduleTicket"
-            style="@style/Widget.ColCab.Button.Primary"
-            android:layout_width="195dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
             android:text="Schedule Ticket" />
 
     </LinearLayout>

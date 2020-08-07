@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -38,6 +39,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -49,7 +51,11 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     private Spinner spnContractors;
     private TextInputEditText tfDatePicker;
     private ArrayList<String> contractors;
+    private ArrayList<String> contractorIDs;
     private ArrayAdapter<String> conAdapter;
+    private FirebaseFirestore db;
+    private String selectedDate;
+    private DocumentReference selectedContractor;
 
     public ViewTicketAdminFragment() {
     }
@@ -59,7 +65,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         ScrollView scrollView = (ScrollView) inflater.inflate(R.layout.fragment_view_ticket_admin, container, false);
         initComponents(scrollView);
         btnScheduleTicket.setOnClickListener(this);
-
+        db = FirebaseFirestore.getInstance();
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -68,6 +74,9 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel(myCalendar);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH);
+                selectedDate = sdf.format(myCalendar.getTime());
+                enableSchedule();
             }
         };
 
@@ -79,9 +88,22 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
             }
         });
         contractors = new ArrayList<>();
+        contractorIDs = new ArrayList<>();
         conAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, contractors);
         conAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnContractors.setAdapter(conAdapter);
+        spnContractors.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedContractor = db.collection("contractors").document(contractorIDs.get(adapterView.getSelectedItemPosition()));
+                enableSchedule();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         return scrollView;
     }
 
@@ -123,14 +145,33 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
      * Schedules Ticket
      */
     private void scheduleTicket() {
-        String result = tfDatePicker.getText().toString();
-        if (result.equals("")) {
-            lDatePicker.setError("Date can't be empty");
-        } else if (spnContractors.getSelectedItemPosition() == 0) {
-            Toast.makeText(getContext(), "A Contractor Must Be Selected", Toast.LENGTH_LONG).show();
-        } else {
-            String ticketid = ViewOpenTicketFragment.ticketID;
+        HashMap<String, Object> scheduleData = new HashMap<>();
+        scheduleData.put("scheduled", true);
+        scheduleData.put("scheduledDate", selectedDate);
+        scheduleData.put("contractor", selectedContractor);
+        db.collection("tickets").document(ViewOpenTicketFragment.ticketID).update(scheduleData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void enableSchedule() {
+        String date = String.valueOf(tfDatePicker.getText());
+        String contractor = String.valueOf(spnContractors.getSelectedItem());
+        if (isValidSchedule(date, contractor) && spnContractors.getSelectedItemPosition() != 0) {
+            btnScheduleTicket.setEnabled(true);
         }
+    }
+
+    private boolean isValidSchedule(String date, String contractor) {
+        return !(date.isEmpty() || contractor.isEmpty());
     }
 
     /**
@@ -139,6 +180,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     @SuppressWarnings("unchecked")
     private void listenContractorChanges() {
         contractors.add("Select a Contractor");
+        contractorIDs.add("Select a Contractor");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("contractors").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -151,20 +193,24 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                     if (value != null) {
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             QueryDocumentSnapshot contractor = dc.getDocument();
+                            String id = contractor.getId();
                             Map<String, Object> fullName = (Map<String, Object>) contractor.get("fullName");
                             String firstName = String.valueOf(fullName.get("firstName"));
                             String lastName = String.valueOf(fullName.get("lastName"));
                             String company = contractor.getString("company");
                             switch (dc.getType()) {
                                 case ADDED:
+                                    contractorIDs.add(id);
                                     contractors.add(firstName + " " + lastName + " - " + company);
                                     conAdapter.notifyDataSetChanged();
                                     break;
                                 case MODIFIED:
+                                    contractorIDs.set(dc.getNewIndex()+1,id);
                                     contractors.set(dc.getNewIndex() + 1, firstName + " " + lastName + " - " + company);
                                     conAdapter.notifyDataSetChanged();
                                     break;
                                 case REMOVED:
+                                    contractorIDs.remove(dc.getOldIndex()+1);
                                     contractors.remove(dc.getOldIndex() + 1);
                                     conAdapter.notifyDataSetChanged();
                                     break;
@@ -184,4 +230,5 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
             scheduleTicket();
         }
     }
+
 }
