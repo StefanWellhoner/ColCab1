@@ -1,150 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.FullScreenDialogFragment">
+    android:padding="16dp"
+    tools:context=".FullScreenDialog">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:cardBackgroundColor="?attr/colorPrimary"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="4dp"
+    // Failure Type spinner
+    <Spinner
+        android:id="@+id/spnFailureTypes"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:entries="@array/spnFailureTypes"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/fullscreen_dialog_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp"
-                android:src="@drawable/ic_close_24" />
-
-            <TextView
-                android:id="@+id/pageTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/fullscreen_dialog_close"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/constraintLayout"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edtSaveAs"
+        style="@style/Widget.ColCab.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:hint="@string/tfSerialNo"
+        app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtClientFeedback">
 
-        <TextView
-            android:id="@+id/lblClientFeedback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/client_feedback" />
-
-        <EditText
-            android:id="@+id/edtSaveAs"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSaveAs1"
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
-
-        <TextView
-            android:id="@+id/lblSaveAs"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/client_feedback" />
+            android:layout_marginTop="24dp"
+            android:inputType="text"
+            android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/edtClientFeedback"
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
+  // Failure Amount
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lblFailureAmount"
+        style="@style/Widget.ColCab.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/amount_due"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spnFailureTypes">
 
-        <Spinner
-            android:id="@+id/spnCSAT"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/spnCATSs" />
-
-        <TextView
-            android:id="@+id/lblFailureType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/failure_type" />
-
-        <Spinner
-            android:id="@+id/spnFailureType"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/spnFailureTypes" />
-
-        <TextView
-            android:id="@+id/lblAmountDue1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/amount_due" />
-
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtAmountDueFailure"
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
-        <TextView
-            android:id="@+id/lblCategoryType"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/category_type" />
+            android:inputType="number"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spnCategoryType"
+    // Category Spinner
+    <Spinner
+        android:id="@+id/spnCategoryTypes"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="9dp"
+        android:entries="@array/spnCategoryTypes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblFailureAmount" />
+
+    // Root Cause
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lblRootCause"
+        style="@style/Widget.ColCab.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/root_cause"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/lblCategoryAmount"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtRootCause"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/spnCategoryTypes" />
-
-        <TextView
-            android:id="@+id/lblAmountDue"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/amount_due" />
+            android:inputType="text"
+            android:maxLines="5" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+    // Satisfaction spinner
+    <Spinner
+        android:id="@+id/spnCSAT"
+        android:layout_width="411dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
+        android:entries="@array/spnCATSs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRootCause" />
+
+    // Category Amount due
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lblCategoryAmount"
+        style="@style/Widget.ColCab.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/amount_due"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/spnCategoryTypes"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtAmountDueCategory"
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
-        <TextView
-            android:id="@+id/lblRootCause"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/root_cause" />
+            android:inputType="number"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/inputRootCause"
+    // Client Feedback
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lblClientFeedback"
+        style="@style/Widget.ColCab.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/client_feedback"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/spnCSAT"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtClientFeedback"
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnCloseTicket"
-            style="@style/Widget.ColCab.Button.Primary"
+    // Save As
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lblSaveAs"
+        style="@style/Widget.ColCab.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/save_as"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/lblClientFeedback"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSaveAs"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:text="@string/button_close" />
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
-</LinearLayout>
+    // Button
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCloseTicket"
+        style="@style/Widget.ColCab.Button.Primary"
+        android:layout_width="195dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/button_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblSaveAs">
+
+    </com.google.android.material.button.MaterialButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+  </LinearLayout>
