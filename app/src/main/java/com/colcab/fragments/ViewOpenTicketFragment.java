@@ -24,12 +24,16 @@ import com.colcab.MainActivity;
 import com.colcab.R;
 import com.colcab.adapters.ViewTicketPagerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +42,7 @@ public class ViewOpenTicketFragment extends Fragment {
     public static final String TICKET_ID = "ticketID";
     public static String ticketID;
     public static boolean condition;
+    private FirebaseFirestore db;
 
     public ViewOpenTicketFragment() {
     }
@@ -86,7 +91,7 @@ public class ViewOpenTicketFragment extends Fragment {
     }
 
     public void getTicketInfo() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("tickets").document(ticketID);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -122,13 +127,45 @@ public class ViewOpenTicketFragment extends Fragment {
                 .show();
     }
 
+    private void closeTicket(final Map<String, Object> data){
+        db.collection("tickets").document(ticketID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Map<String, Object> ticketData = document.getData();
+                    ticketData.putAll(data);
+                    ticketData.put("closedDate", Timestamp.now());
+                    db.collection("closed tickets").add(ticketData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            db.collection("tickets").document(ticketID).delete();
+                            Navigation.findNavController(getView()).navigateUp();
+                            Toast.makeText(getContext(), "Ticket Closed", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), "An Error Occurred: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "An Error Occurred: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void fullScreenDialog() {
         FullScreenDialogFragment dialog = FullScreenDialogFragment.newInstance();
         dialog.show(getChildFragmentManager(), "TAG");
         dialog.setCallback(new FullScreenDialogFragment.Callback() {
             @Override
-            public void onActionClick(HashMap<String, Object> data) {
-                Toast.makeText(getContext(), String.valueOf(data.get("data1")), Toast.LENGTH_SHORT).show();
+            public void onActionClick(Map<String, Object> data) {
+                closeTicket(data);
             }
         });
     }

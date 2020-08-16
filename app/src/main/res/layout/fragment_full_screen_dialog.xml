@@ -55,26 +55,34 @@
             android:paddingEnd="16dp"
             tools:context=".fragments.FullScreenDialogFragment">
 
-            <Spinner
-                android:id="@+id/spnFailureTypes"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:entries="@array/spnFailureTypes" />
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/lSerialNo"
-                style="@style/Widget.ColCab.TextInputLayout"
+                style="@style/Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/tfSerialNo"
-                app:errorEnabled="true">
+                android:hint="@string/category_type"
+                android:labelFor="@id/spnCategoryTypes">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tfSerialNo"
+                <AutoCompleteTextView
+                    android:id="@+id/spnCategoryTypes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLines="1" />
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/failure_type"
+                android:labelFor="@id/spnFailureTypes">
+
+                <AutoCompleteTextView
+                    android:id="@+id/spnFailureTypes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -93,12 +101,6 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/spnCategoryTypes"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:entries="@array/spnCategoryTypes" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lRootCause"
                 style="@style/Widget.ColCab.TextInputLayout"
@@ -115,12 +117,6 @@
                     android:maxLines="5" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/spnCSAT"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:entries="@array/spnCATSs" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lClientFeedback"
                 style="@style/Widget.ColCab.TextInputLayout"
@@ -135,6 +131,21 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Satisfaction Level"
+                android:labelFor="@id/spnCSAT">
+
+                <AutoCompleteTextView
+                    android:id="@+id/spnCSAT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

@@ -91,7 +91,7 @@
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dapibus, arcu ut tempor fringilla, purus nisl pharetra tellus, eget euismod sem sapien ac diam. Sed cursus dui id vehicula fermentum. Quisque consequat massa faucibus pellentesque congue. Vivamus iaculis dui et metus feugiat, at iaculis lacus tincidunt. Donec ac nulla id dolor tincidunt pellentesque. Maecenas in tincidunt purus, a hendrerit lorem. Proin pellentesque urna ut nisl lacinia, at pharetra quam vulputate. Vivamus orci neque, interdum sit amet quam sed, finibus pellentesque felis. Ut a commodo leo.</string>
 
     <!--        ARRAYS      -->
-    <string-array name="log_status_Text">
+    <string-array name="warranty">
         <item>IN</item>
         <item>OUT</item>
         <item>UNKNOWN</item>
@@ -139,6 +139,4 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
