@@ -43,7 +43,7 @@ public class ScheduledTicketsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_scheduled_tickets, container, false);
-        Query query = ticketsRef.orderBy("loggedDate", Query.Direction.DESCENDING).whereEqualTo("scheduled", true);
+        Query query = ticketsRef.orderBy("scheduledDate", Query.Direction.ASCENDING).whereEqualTo("scheduled", true);
         FirestoreRecyclerOptions<Ticket> options = new FirestoreRecyclerOptions.Builder<Ticket>().setQuery(query, Ticket.class).build();
         adapter = new ScheduledTicketAdapter(options);
         recyclerView.setHasFixedSize(true);
