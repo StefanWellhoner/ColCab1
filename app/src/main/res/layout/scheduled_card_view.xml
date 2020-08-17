@@ -20,7 +20,7 @@
             android:id="@+id/ticket_sch_cust"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ticket 1"
+            android:text="@string/store"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorWhite" />
 
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="Ticket Description"
+            android:text="@string/description"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorWhite" />
@@ -38,7 +38,7 @@
             android:id="@+id/ticket_sch_logged"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ticket Log Date"
+            android:text="@string/date_logged"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/colorWhite" />
 
@@ -46,7 +46,7 @@
             android:id="@+id/ticket_sch_sched"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ticket Scheduled Date"
+            android:text="@string/scheduled_date"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/colorWhite" />
 

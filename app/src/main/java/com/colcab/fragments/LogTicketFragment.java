@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
@@ -26,6 +27,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,6 +76,9 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         lCaseDesc = v.findViewById(R.id.lCaseDesc);
         lReqBy = v.findViewById(R.id.lReqBy);
         lCustomerPO = v.findViewById(R.id.lCustomerPO);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.warranty));
+        spnWarranty.setAdapter(adapter);
     }
 
     /**
@@ -201,20 +206,9 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         String customerPO = tfCustomerPO.getText().toString();
 
         if (!isTicketInfoValid(customer, serialNum, caseModel, caseDesc, reqBy, customerPO)) {
-            String lastName = "";
-            String firstName = "";
-            if (reqBy.split("\\w+").length > 1) {
+            Map<String, Object> fullName = splitFullName(reqBy);
 
-                lastName = reqBy.substring(reqBy.lastIndexOf(" ") + 1);
-                firstName = reqBy.substring(0, reqBy.lastIndexOf(' '));
-            } else {
-                firstName = reqBy;
-            }
-            Map<String, Object> fullName = new HashMap<>();
-            fullName.put("firstName", firstName);
-            fullName.put("lastName", lastName);
-
-            // Add entered text to Hashmap for Firebase
+            // Add entered text to HashMap for Firebase
             Map<String, Object> ticketData = new HashMap<>();
             ticketData.put("loggedDate", getCurrentDate());
             ticketData.put("customer", customer);
@@ -235,6 +229,7 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
                 public void onSuccess(DocumentReference documentReference) {
                     Toast.makeText(getContext(), "Ticket was Logged", Toast.LENGTH_LONG).show();
                     System.out.println("Document ID: " + documentReference.getId());
+                    clearTextFields();
                     loadingBar.setVisibility(View.GONE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -242,12 +237,40 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
                 // OnFailure => Error has occurred (TAG: Firebase Error:)
                 public void onFailure(@NonNull Exception e) {
                     Log.d("Firebase Error: ", e.getMessage());
+                    clearTextFields();
                     loadingBar.setVisibility(View.GONE);
                 }
             });
         } else {
+            clearTextFields();
+            loadingBar.setVisibility(View.GONE);
             Toast.makeText(getContext(), "Please fill in all information", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void clearTextFields(){
+        tfCustomer.setText("");
+        tfSerialNum.setText("");
+        tfCaseModel.setText("");
+        tfCaseDesc.setText("");
+        tfRequestedBy.setText("");
+        tfCustomerPO.setText("");
+    }
+
+    private Map<String, Object> splitFullName(String fName){
+        String lastName = "";
+        String firstName = "";
+        if (fName.split("\\w+").length > 1) {
+
+            lastName = fName.substring(fName.lastIndexOf(" ") + 1);
+            firstName = fName.substring(0, fName.lastIndexOf(' '));
+        } else {
+            firstName = fName;
+        }
+        Map<String, Object> fullName = new HashMap<>();
+        fullName.put("firstName", firstName);
+        fullName.put("lastName", lastName);
+        return fullName;
     }
 
     @Override

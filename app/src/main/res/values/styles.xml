@@ -37,6 +37,7 @@
         <item name="backgroundTint">@color/colorHint</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginBottom">16dp</item>
     </style>
 
     <style name="Widget.ColCab.Button.Primary" parent="Widget.ColCab.Button">

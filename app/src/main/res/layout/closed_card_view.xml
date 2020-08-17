@@ -19,7 +19,7 @@
             android:id="@+id/ticket_closed_cust"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Spar - Durbanville"
+            android:text="@string/store"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorWhite" />
 
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="Ticket Description"
+            android:text="@string/description"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorWhite" />
@@ -37,7 +37,7 @@
             android:id="@+id/ticket_closed_logged"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date Logged: 25/07/2020"
+            android:text="@string/date_logged"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/colorWhite" />
 
@@ -45,7 +45,7 @@
             android:id="@+id/ticket_closed_closed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date Closed: 26/07/2020"
+            android:text="@string/date_closed"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/colorWhite" />
 

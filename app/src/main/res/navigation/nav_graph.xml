@@ -69,7 +69,7 @@
     <fragment
         android:id="@id/addContractorFragment"
         android:name="com.colcab.fragments.AddContractorFragment"
-        android:label="fragment_add_contractor"
+        android:label="@string/add_contractor"
         tools:layout="@layout/fragment_add_contractor" />
     <fragment
         android:id="@+id/viewClosedTicketFragment"
