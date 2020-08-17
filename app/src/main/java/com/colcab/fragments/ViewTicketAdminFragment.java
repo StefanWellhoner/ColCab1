@@ -128,7 +128,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         tfDatePicker = v.findViewById(R.id.tfDatePicker);
         btnScheduleTicket = v.findViewById(R.id.btnScheduleTicket);
         lDatePicker = v.findViewById(R.id.lDatePicker);
-        spnContractors = v.findViewById(R.id.spinner2);
+        spnContractors = v.findViewById(R.id.spnContractors);
     }
 
     /**

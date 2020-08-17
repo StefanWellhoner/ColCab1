@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Contractor Details"
+        android:text="@string/contractor_details"
         android:textSize="24sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -24,7 +24,7 @@
         style="@style/Widget.ColCab.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txtContractorFullName"
+        android:hint="@string/full_name"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +39,7 @@
         style="@style/Widget.ColCab.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txtContractorCompany"
+        android:hint="@string/company"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +54,7 @@
         style="@style/Widget.ColCab.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txtContractorMobileNumber"
+        android:hint="@string/mobile_number"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -69,7 +69,7 @@
         style="@style/Widget.ColCab.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txtContractorBusinessNumber"
+        android:hint="@string/business_number"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -84,7 +84,7 @@
         style="@style/Widget.ColCab.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txtContractorCountryRegion"
+        android:hint="@string/country_region"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -100,5 +100,5 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/btnAddContractor" />
+        android:text="@string/add_contractor" />
 </LinearLayout>

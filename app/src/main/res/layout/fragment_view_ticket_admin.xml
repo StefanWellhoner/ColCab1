@@ -17,7 +17,7 @@
             style="@style/Widget.ColCab.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/dp_contractors"
+            android:hint="@string/select_date"
             app:endIconMode="clear_text"
             app:endIconDrawable="@drawable/ic_close_24"
             app:endIconTint="@color/colorPrimaryDark">
@@ -33,10 +33,9 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spnContractors"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:entries="@array/spnContractors" />
+            android:layout_height="46dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnScheduleTicket"
@@ -44,7 +43,7 @@
             android:layout_height="64dp"
             android:layout_marginTop="16dp"
             android:enabled="false"
-            android:text="Schedule Ticket" />
+            android:text="@string/schedule_ticket" />
 
     </LinearLayout>
 
