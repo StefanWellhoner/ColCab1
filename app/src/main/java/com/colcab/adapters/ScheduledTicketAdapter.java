@@ -20,6 +20,7 @@ import java.util.Locale;
 
 public class ScheduledTicketAdapter extends FirestoreRecyclerAdapter<Ticket, ScheduledTicketAdapter.TicketHolder> {
     private ScheduledTicketAdapter.onItemClickListener listener;
+    private static View view;
 
     public ScheduledTicketAdapter(FirestoreRecyclerOptions<Ticket> options) {
         super(options);
@@ -31,8 +32,8 @@ public class ScheduledTicketAdapter extends FirestoreRecyclerAdapter<Ticket, Sch
         Date loggedDate = model.getLoggedDate().toDate();
         holder.tfCustomer.setText(model.getCustomer());
         holder.tfDescription.setText(model.getCaseDescription());
-        holder.tfLoggedDate.setText(sdf.format(loggedDate));
-        holder.tfScheduledDate.setText(model.getScheduledDate());
+        holder.tfLoggedDate.setText("Logged: " + sdf.format(loggedDate));
+        holder.tfScheduledDate.setText("Scheduled: " + model.getScheduledDate());
     }
 
     @NonNull
@@ -48,6 +49,7 @@ public class ScheduledTicketAdapter extends FirestoreRecyclerAdapter<Ticket, Sch
 
         public TicketHolder(View itemView) {
             super(itemView);
+            view = itemView;
             tfCustomer = itemView.findViewById(R.id.ticket_sch_cust);
             tfDescription = itemView.findViewById(R.id.ticket_sch_desc);
             tfLoggedDate = itemView.findViewById(R.id.ticket_sch_logged);

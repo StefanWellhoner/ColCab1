@@ -32,7 +32,7 @@ public class UnscheduledTicketAdapter extends FirestoreRecyclerAdapter<Ticket, U
         Date loggedDate = model.getLoggedDate().toDate();
         holder.tfCustomer.setText(model.getCustomer());
         holder.tfDescription.setText(model.getCaseDescription());
-        holder.tfLoggedDate.setText(sdf.format(loggedDate));
+        holder.tfLoggedDate.setText("Logged: " + sdf.format(loggedDate));
     }
 
     @NonNull

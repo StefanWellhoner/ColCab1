@@ -89,6 +89,7 @@
     <string name="type_here">Type here &#8230;</string>
 
     <!--        ARRAYS      -->
+
     <string-array name="warranty">
         <item>IN</item>
         <item>OUT</item>
@@ -118,6 +119,7 @@
     <string name="add_contractor">Add Contractor</string>
     <string name="scheduled_date">Scheduled Date</string>
 
+
     <string-array name="spnFailureTypes">
         <item>Choose Failure Types</item>
         <item>Failure Types 1</item>
@@ -131,7 +133,7 @@
         <item>Category Type 2</item>
         <item>Category Type 3</item>
     </string-array>
-
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="spnCATSs">
         <item>Satisfaction level</item>
         <item>1</item>
