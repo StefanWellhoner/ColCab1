@@ -91,6 +91,15 @@
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dapibus, arcu ut tempor fringilla, purus nisl pharetra tellus, eget euismod sem sapien ac diam. Sed cursus dui id vehicula fermentum. Quisque consequat massa faucibus pellentesque congue. Vivamus iaculis dui et metus feugiat, at iaculis lacus tincidunt. Donec ac nulla id dolor tincidunt pellentesque. Maecenas in tincidunt purus, a hendrerit lorem. Proin pellentesque urna ut nisl lacinia, at pharetra quam vulputate. Vivamus orci neque, interdum sit amet quam sed, finibus pellentesque felis. Ut a commodo leo.</string>
 
     <!--        ARRAYS      -->
+    <string name="failure_type">Failure Type</string>
+    <string name="amount_due">Amount Due</string>
+    <string name="category_type">Category Type</string>
+    //Closed Ticket
+    <string name="root_cause">Root Cause</string>
+    <string name="client_feedback">Client Feedback</string>
+    <string name="save_as">Save As</string>
+    <string name="button_close">Close Ticket</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="log_status_Text">
         <item>IN</item>
         <item>OUT</item>
@@ -102,20 +111,13 @@
         <item>test data 2</item>
         <item>test data 3</item>
     </string-array>
+
     <string-array name="spnContractors">
         <item>Choose Contractor</item>
         <item>Contractor 1</item>
         <item>Contractor 2</item>
         <item>Contractor 3</item>
     </string-array>
-    //Closed Ticket
-    <string name="failure_type">Failure Type</string>
-    <string name="amount_due">Amount Due</string>
-    <string name="category_type">Category Type</string>
-    <string name="root_cause">Root Cause</string>
-    <string name="client_feedback">Client Feedback</string>
-    <string name="save_as">Save As</string>
-    <string name="button_close">Close Ticket</string>
 
     <string-array name="spnFailureTypes">
         <item>Choose Failure Types</item>
@@ -130,7 +132,7 @@
         <item>Category Type 2</item>
         <item>Category Type 3</item>
     </string-array>
-
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="spnCATSs">
         <item>Satisfaction level</item>
         <item>1</item>
@@ -139,6 +141,5 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

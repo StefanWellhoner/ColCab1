@@ -11,12 +11,14 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.colcab.R;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
 
     private NavController navController;
+    private FrameLayout loadingBar;
 
     public MainFragment() {
     }
@@ -24,6 +26,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        loadingBar = getActivity().findViewById(R.id.loadingBar);
+        loadingBar.setVisibility(View.GONE);
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 

@@ -12,12 +12,14 @@ import com.colcab.R;
 import com.colcab.models.ClosedTicket;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class ClosedTicketAdapter  extends FirestoreRecyclerAdapter<ClosedTicket, ClosedTicketAdapter.TicketHolder> {
+    private ClosedTicketAdapter.onItemClickListener listener;
 
     public ClosedTicketAdapter(FirestoreRecyclerOptions<ClosedTicket> options) {
         super(options);
@@ -30,8 +32,8 @@ public class ClosedTicketAdapter  extends FirestoreRecyclerAdapter<ClosedTicket,
         Date closedDate = model.getClosedDate().toDate();
         holder.tfCustomer.setText(model.getCustomer());
         holder.tfRootCause.setText(model.getRootCause());
-        holder.tfLoggedDate.setText(sdf.format(loggedDate));
-        holder.tfClosedDate.setText(sdf.format(closedDate));
+        holder.tfLoggedDate.setText("Logged: " + sdf.format(loggedDate));
+        holder.tfClosedDate.setText("Closed: " + sdf.format(closedDate));
     }
 
     @NonNull
@@ -51,8 +53,25 @@ public class ClosedTicketAdapter  extends FirestoreRecyclerAdapter<ClosedTicket,
             tfRootCause = itemView.findViewById(R.id.ticket_closed_rootCause);
             tfLoggedDate = itemView.findViewById(R.id.ticket_closed_logged);
             tfClosedDate = itemView.findViewById(R.id.ticket_closed_closed);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null){
+                        listener.onItemClick(getSnapshots().getSnapshot(position),position);
+                    }
+                }
+            });
         }
 
+    }
+
+    public interface onItemClickListener{
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+
+    public void setOnItemClickListener(ClosedTicketAdapter.onItemClickListener listener){
+        this.listener = listener;
     }
 
 }
