@@ -59,7 +59,11 @@
         tools:layout="@layout/fragment_closed_tickets" >
         <action
             android:id="@+id/action_closedTicketsFragment_to_viewClosedTicketFragment"
-            app:destination="@id/viewClosedTicketFragment" />
+            app:destination="@id/viewClosedTicketFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/viewOpenTicketFragment"
@@ -74,5 +78,6 @@
     <fragment
         android:id="@+id/viewClosedTicketFragment"
         android:name="com.colcab.fragments.ViewClosedTicketFragment"
-        android:label="ViewClosedTicketFragment" />
+        android:label="View Closed Ticket"
+        tools:layout="@layout/fragment_view_closed_ticket"/>
 </navigation>
