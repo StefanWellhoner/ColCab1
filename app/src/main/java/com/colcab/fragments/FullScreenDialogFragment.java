@@ -129,7 +129,8 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                System.out.println(e.getMessage());
+                Log.d("Firebase Error: ", e.getMessage());
+                Toast.makeText(getContext(), "An Error Occurred", Toast.LENGTH_SHORT).show();
             }
         });
 

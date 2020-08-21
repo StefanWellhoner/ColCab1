@@ -13,6 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
+import androidx.navigation.NavOptionsBuilder;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
-        NavigationUI.setupWithNavController(this.<NavigationView>findViewById(R.id.nav_view),navController);
+        NavigationUI.setupWithNavController(this.<NavigationView>findViewById(R.id.nav_view), navController);
 
         loadingBar = findViewById(R.id.loadingBar);
     }
