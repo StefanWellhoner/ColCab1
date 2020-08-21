@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">ColCab</string>
+    <!--    Sign Up label -->
+    <string name="username_signup"> Email address</string>
+    <string name="password_signup"> Password</string>
+    <string name="button_signup"> Sign Up</string>
+
     <!--    Screen Labels-->
     <string name="screen_log_ticket">Log Ticket</string>
     <string name="screen_open_ticket">Open Tickets</string>
@@ -150,4 +155,6 @@
 
     // Content Description
     <string name="colcab_logo">ColCab Logo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
