@@ -4,13 +4,17 @@ public class Dates {
     private String customer;
     private String caseModel;
     private String documentID;
-    private String dateScheduled;
+    private String scheduledDate;
 
-    public Dates(String customer, String caseModel, String documentID, String dateScheduled) {
+    public Dates(){
+
+    }
+
+    public Dates(String customer, String caseModel, String documentID, String scheduledDate) {
         this.customer = customer;
         this.caseModel = caseModel;
         this.documentID = documentID;
-        this.dateScheduled = dateScheduled;
+        this.scheduledDate = scheduledDate;
     }
 
     public String getCustomer() {
@@ -37,11 +41,11 @@ public class Dates {
         this.documentID = documentID;
     }
 
-    public String getDateScheduled() {
-        return dateScheduled;
+    public String getScheduledDate() {
+        return scheduledDate;
     }
 
-    public void setDateScheduled(String dateScheduled) {
-        this.dateScheduled = dateScheduled;
+    public void setScheduledDate(String scheduledDate) {
+        this.scheduledDate = scheduledDate;
     }
 }

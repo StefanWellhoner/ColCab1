@@ -8,7 +8,7 @@
         android:id="@id/action_SignUpFragment_to_MainFragment"
         android:name="com.colcab.fragments.MainFragment"
         android:label="@string/button_signup"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_sign_up">
          <action
              android:id="@+id/action_SignUpFragment_to_MainFragment"
              app:destination="@id/mainFragment"
