@@ -11,7 +11,9 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.ArraySet;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -65,12 +68,13 @@ public class MainActivity extends AppCompatActivity {
     //private DocumentReference ref = db.collection("tickets").document("First");
     private CollectionReference colref = db.collection("tickets");
 
+    //Global variable for connection
     public static boolean isConnected;
+    private TextView connectionStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -87,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(this.<NavigationView>findViewById(R.id.nav_view), navController);
 
         loadingBar = findViewById(R.id.loadingBar);
+        connectionStatus = findViewById(R.id.textviewConnection);
+        connectionStatus.setVisibility(View.GONE);
 
         //Notification Channel
         NotificationChannel channel = new NotificationChannel(CHANNEL_ONE, CHANNEL_THREE, NotificationManager.IMPORTANCE_DEFAULT);
@@ -96,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
         manager.createNotificationChannel(channel);
         notificationManager = NotificationManagerCompat.from(this);
     }
-
-
     //Connectivity Check
     public BroadcastReceiver connectivity = new BroadcastReceiver() {
         @Override
@@ -110,18 +114,19 @@ public class MainActivity extends AppCompatActivity {
                     isConnected = false;
                     System.out.println("No Connection");
                     Toast.makeText(context, "No Connectivity", Toast.LENGTH_SHORT).show();
-                    //LogTicketFragment.connectionCheck(isConnected);
+                    //loadingBar.setVisibility(View.GONE);
+                    connectionStatus.setVisibility(View.VISIBLE);
+                    //setConnectionCheck(isConnected);
                 } else {
                     isConnected = true;
                     System.out.println("Connection is On");
                     Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
+                    connectionStatus.setVisibility(View.INVISIBLE);
                     //LogTicketFragment.connectionCheck(isConnected);
                 }
             }
         }
     };
-
-
 
     @Override
     protected void onStop() {
@@ -210,15 +215,16 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this, CHANNEL_ONE)
                         .setSmallIcon(R.drawable.ic_baseline_access_alarms_24)
-                        .setContentTitle("Scheduled Dates of the Week")
+                        .setContentTitle("Scheduled Tickets")
                         .setStyle(new NotificationCompat.InboxStyle()
-                                .addLine(id)
-                                .addLine(customer)
-                                .addLine(caseModel)
+                                .addLine("ID: " + id)
+                                .addLine("Customer: " + customer)
+                                .addLine("Casemodel: " + caseModel)
                                 .addLine(daysLeft + numDays))
                         //.setContentText(toString(numDays))
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                        .setColor(ContextCompat.getColor(this, R.color.colorSecondary))
                         .setContentIntent(contentIntent);
         //Adding button
         //.addAction(R.mipmap.ic_launcher, "View Ticket", activtyIntent);

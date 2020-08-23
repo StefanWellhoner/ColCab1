@@ -25,6 +25,18 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textviewConnection"
+            android:text="Not Connected"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:background="@color/colorError"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
