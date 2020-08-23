@@ -3,11 +3,16 @@ package com.colcab;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.ArraySet;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +26,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.colcab.fragments.LogTicketFragment;
 import com.colcab.helpers.Dates;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -50,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout loadingBar;
 
     //Ticket Notification
-    private static final String CHANNEL_ONE= "Simple way of displaying";
+    private static final String CHANNEL_ONE = "Simple way of displaying";
     private static final String CHANNEL_TWO = "Your mom";
     private static final String CHANNEL_THREE = "Your mom AS WELL";
     private NotificationManagerCompat notificationManager;
@@ -58,10 +64,13 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     //private DocumentReference ref = db.collection("tickets").document("First");
     private CollectionReference colref = db.collection("tickets");
+
+    public static boolean isConnected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //
+
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -88,9 +97,46 @@ public class MainActivity extends AppCompatActivity {
         notificationManager = NotificationManagerCompat.from(this);
     }
 
+
+    //Connectivity Check
+    public BroadcastReceiver connectivity = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+                boolean noConnectivity = intent.getBooleanExtra(
+                        ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
+                );
+                if (noConnectivity) {
+                    isConnected = false;
+                    System.out.println("No Connection");
+                    Toast.makeText(context, "No Connectivity", Toast.LENGTH_SHORT).show();
+                    //LogTicketFragment.connectionCheck(isConnected);
+                } else {
+                    isConnected = true;
+                    System.out.println("Connection is On");
+                    Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
+                    //LogTicketFragment.connectionCheck(isConnected);
+                }
+            }
+        }
+    };
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //Unregister the Connection receiver
+        unregisterReceiver(connectivity);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
+
+        //Connection Check
+        IntentFilter intentFilterConn = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(connectivity, intentFilterConn);
 
         //Displaying the dates of the tickets
         colref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

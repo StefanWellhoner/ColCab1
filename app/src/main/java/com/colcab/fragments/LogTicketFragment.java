@@ -1,5 +1,10 @@
 package com.colcab.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.colcab.MainActivity;
 import com.colcab.R;
 import com.colcab.helpers.Validator;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +36,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.colcab.MainActivity.isConnected;
 
 public class LogTicketFragment extends Fragment implements View.OnClickListener {
 
@@ -246,6 +254,8 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
             loadingBar.setVisibility(View.GONE);
             Toast.makeText(getContext(), "Please fill in all information", Toast.LENGTH_LONG).show();
         }
+
+
     }
 
     private void clearTextFields(){
@@ -276,7 +286,40 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_log_ticket) {
+
             onLogTicket();
+            //Checking if there is connection
+            //connectionCheck(isConnected);
+        }
+    }
+    //Connectivity Check
+    public BroadcastReceiver connectivity = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+                boolean noConnectivity = intent.getBooleanExtra(
+                        ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
+                );
+                if (noConnectivity) {
+                    isConnected = false;
+                    System.out.println("No Connection");
+                    Toast.makeText(context, "No Connectivity", Toast.LENGTH_SHORT).show();
+                } else {
+                    isConnected = true;
+                    System.out.println("Connection is On");
+                    Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    };
+    public void connectionCheck(boolean isConnected) {
+        if (isConnected) {
+            System.out.println("No Connection");
+
+            //Display notification
+        } else {
+            System.out.println("Connection is On");
+            //Display notification
         }
     }
 }
