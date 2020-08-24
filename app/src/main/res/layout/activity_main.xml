@@ -44,12 +44,12 @@
                 android:layout_centerInParent="true"
                 android:alpha="0.4"
                 android:clickable="true"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:background="@color/colorHint">
 
                 <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:indeterminate="true"
                     android:indeterminateTint="@color/colorPrimary"
                     android:layout_gravity="center" />

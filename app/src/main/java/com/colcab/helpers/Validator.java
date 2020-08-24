@@ -42,4 +42,12 @@ public class Validator {
     public static boolean isRegionValid(String region) {
         return region != null && region.length() > 0;
     }
+
+    public static boolean isCategoryTypeValid(String categoryType){
+        return categoryType != null && categoryType.length() > 0;
+    }
+
+    public static boolean isFailureTypeValid(String failureType){
+        return failureType != null && failureType.length() > 0;
+    }
 }

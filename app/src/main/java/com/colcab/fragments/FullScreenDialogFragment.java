@@ -1,5 +1,6 @@
 package com.colcab.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.colcab.R;
+import com.colcab.helpers.Validator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,7 +47,7 @@ import java.util.Map;
 
 public class FullScreenDialogFragment extends DialogFragment implements View.OnClickListener {
 
-    private TextInputLayout lblAmountDue, lblRootCause, lblClientFeedback, lblSaveAs;
+    private TextInputLayout lblAmountDue, lblRootCause, lblClientFeedback, lblSaveAs, lblCategoryType, lblFailureType;
     private AutoCompleteTextView spnCategoryTypes;
     private AutoCompleteTextView spnFailureTypes;
     private AutoCompleteTextView spnCSATs;
@@ -94,6 +96,8 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         lblRootCause = v.findViewById(R.id.lRootCause);
         lblClientFeedback = v.findViewById(R.id.lClientFeedback);
         lblSaveAs = v.findViewById(R.id.lSaveAs);
+        lblCategoryType = v.findViewById(R.id.lCategoryType);
+        lblFailureType = v.findViewById(R.id.lFailureType);
 
         tfAmountDue = v.findViewById(R.id.tfAmountDue);
         tfRootCause = v.findViewById(R.id.tfRootCause);
@@ -109,17 +113,29 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         btnCloseTicket.setOnClickListener(this);
     }
 
+    private boolean isValidData(Map<String, Object> data){
+        int errorCounter = 0;
+        if (!Validator.isCategoryTypeValid(String.valueOf(data.get("categoryType")))){
+            errorCounter++;
+            lblCategoryType.setError("Please select a category");
+        }
+        if (!Validator.isFailureTypeValid(String.valueOf(data.get("failureType")))){
+            errorCounter++;
+            lblFailureType.setError("Please select a failure type");
+        }
+        return !(errorCounter > 0);
+    }
+
     private void initSpinners() {
         catOfFailList = new ArrayList<>();
         catOfFailAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, catOfFailList);
         catOfFailAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnCategoryTypes.setAdapter(catOfFailAdapter);
-        catOfFailList.add("Choose Failure Category");
         CollectionReference catOfFail = db.collection("categories of failure");
         catOfFail.orderBy("catagoryName", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
+                if (task.isSuccessful() && task.getResult() != null) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         catOfFailList.add(document.getString("catagoryName"));
                     }
@@ -129,8 +145,10 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("Firebase Error: ", e.getMessage());
-                Toast.makeText(getContext(), "An Error Occurred", Toast.LENGTH_SHORT).show();
+                if (e.getMessage() != null){
+                    Log.d("Firebase Error: ", e.getMessage());
+                    Toast.makeText(getContext(), "An Error Occurred", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -161,8 +179,11 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         int id = view.getId();
         switch (id) {
             case R.id.btnCloseTicket:
-                callback.onActionClick(getData());
-                dismiss();
+                Map<String, Object> data = getData();
+                if (isValidData(data)){
+                    callback.onActionClick(data);
+                    dismiss();
+                }
                 break;
             case R.id.fullscreen_dialog_close:
                 dismiss();
