@@ -190,7 +190,6 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
      */
     @SuppressWarnings("unchecked")
     private void listenContractorChanges() {
-        contractorIDs.add("Select a Contractor");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("contractors").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

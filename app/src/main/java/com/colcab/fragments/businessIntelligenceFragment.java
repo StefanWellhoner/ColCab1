@@ -81,7 +81,6 @@ public class businessIntelligenceFragment extends Fragment {
         pieData.addDataSet(dataSet);
 
         PieChart chart = (PieChart) view.findViewById(R.id.chart);
-
         chart.setData(pieData);
         chart.invalidate();
 
