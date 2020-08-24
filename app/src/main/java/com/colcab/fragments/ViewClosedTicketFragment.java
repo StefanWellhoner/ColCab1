@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class ViewClosedTicketFragment extends Fragment {
     public static final String TICKET_ID = "ticketID";
     public static String ticketID;
 
-    private static TextView customer, description, rootCause, loggedDate, closedDate;
+    private static TextView customer, customerPo, reqBy, caseModel, serialNumber, catType, description, rootCause, warranty, loggedDate, closedDate;
     private FrameLayout loadingBar;
     private static View view;
 
@@ -53,8 +54,14 @@ public class ViewClosedTicketFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_closed_ticket, container, false);
         customer = view.findViewById(R.id.tvCustomer);
+        customerPo = view.findViewById(R.id.tvCustomerPo);
+        reqBy = view.findViewById(R.id.tvReqBy);
+        caseModel = view.findViewById(R.id.tvCaseModel);
+        serialNumber = view.findViewById(R.id.tvSerialNumber);
+        catType = view.findViewById(R.id.tvCategorytype);
         description = view.findViewById(R.id.tvDescription);
         rootCause = view.findViewById(R.id.tvRootCause);
+        warranty = view.findViewById(R.id.tvWarranty);
         loggedDate = view.findViewById(R.id.tvLoggedDate);
         closedDate = view.findViewById(R.id.tvClosedDate);
         setFields();
@@ -80,9 +87,19 @@ public class ViewClosedTicketFragment extends Fragment {
                     Timestamp ld = (Timestamp)data.get("loggedDate");
                     Timestamp cd = (Timestamp)data.get("closedDate");
 
+                    HashMap<Object, String> req = (HashMap)data.get("requestedBy");
+
+                    String reqName = req.get("firstName") + " " + req.get("lastName");
+
                     customer.setText(data.get("customer").toString());
+                    customerPo.setText(data.get("customerPO").toString());
+                    reqBy.setText(reqName);
+                    caseModel.setText(data.get("caseModel").toString());
+                    serialNumber.setText(data.get("serialNumber").toString());
+                    catType.setText(data.get("categoryType").toString());
                     description.setText(data.get("caseDescription").toString());
                     rootCause.setText(data.get("rootCause").toString());
+                    warranty.setText(data.get("warranty").toString());
                     loggedDate.setText(dateFormat.format(ld.toDate()));
                     closedDate.setText(dateFormat.format(cd.toDate()));
 

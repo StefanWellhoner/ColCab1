@@ -114,7 +114,6 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         catOfFailAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, catOfFailList);
         catOfFailAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnCategoryTypes.setAdapter(catOfFailAdapter);
-        catOfFailList.add("Choose Failure Category");
         CollectionReference catOfFail = db.collection("categories of failure");
         catOfFail.orderBy("catagoryName", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

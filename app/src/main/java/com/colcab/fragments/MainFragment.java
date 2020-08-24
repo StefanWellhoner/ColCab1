@@ -36,6 +36,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.btn_log_ticket).setOnClickListener(this);
         view.findViewById(R.id.btn_open_tickets).setOnClickListener(this);
         view.findViewById(R.id.btn_closed_tickets).setOnClickListener(this);
+        view.findViewById(R.id.btn_BI).setOnClickListener(this);
         navController = Navigation.findNavController(view);
     }
 
@@ -50,6 +51,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_closed_tickets:
                 navController.navigate(R.id.action_mainFragment_to_closedTicketsFragment);
+                break;
+            case R.id.btn_BI:
+                navController.navigate(R.id.action_mainFragment_to_businessIntelligenceFragment);
                 break;
         }
     }

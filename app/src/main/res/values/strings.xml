@@ -90,20 +90,9 @@
 
     <!--        ARRAYS      -->
 
-    <string-array name="warranty">
-        <item>IN</item>
-        <item>OUT</item>
-        <item>UNKNOWN</item>
-    </string-array>
-    <string-array name="spnClosedTickets">
-        <item>Category</item>
-        <item>test data 1</item>
-        <item>test data 2</item>
-        <item>test data 3</item>
-    </string-array>
-    //Closed Ticket
     <string name="failure_type">Failure Type</string>
     <string name="amount_due">Amount Due</string>
+    //Closed Ticket
     <string name="category_type">Category Type</string>
     <string name="root_cause">Root Cause</string>
     <string name="client_feedback">Client Feedback</string>
@@ -118,8 +107,28 @@
     <string name="country_region">Country/Region</string>
     <string name="add_contractor">Add Contractor</string>
     <string name="scheduled_date">Scheduled Date</string>
+    <string name="store">Store Name</string>
+    <string name="description">Description</string>
 
 
+    <string name="date_logged">Date Logged</string>
+
+    <string name="date_closed">Date Closed</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="colcab_logo">ColCab Logo</string>
+    // Placeholder Card View
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="warranty">
+        <item>IN</item>
+        <item>OUT</item>
+        <item>UNKNOWN</item>
+    </string-array>
+    <string-array name="spnClosedTickets">
+        <item>Category</item>
+        <item>test data 1</item>
+        <item>test data 2</item>
+        <item>test data 3</item>
+    </string-array>
     <string-array name="spnFailureTypes">
         <item>Choose Failure Types</item>
         <item>Failure Types 1</item>
@@ -127,6 +136,7 @@
         <item>Failure Types</item>
     </string-array>
 
+    // Content Description
     <string-array name="spnCategoryTypes">
         <item>Choose Category Types</item>
         <item>Category Type 1</item>
@@ -142,12 +152,4 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-    // Placeholder Card View
-    <string name="store">Store Name</string>
-    <string name="description">Description</string>
-    <string name="date_logged">Date Logged</string>
-    <string name="date_closed">Date Closed</string>
-
-    // Content Description
-    <string name="colcab_logo">ColCab Logo</string>
 </resources>

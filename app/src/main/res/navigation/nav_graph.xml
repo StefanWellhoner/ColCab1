@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_mainFragment_to_addContractorFragment"
             app:destination="@id/addContractorFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_businessIntelligenceFragment"
+            app:destination="@id/businessIntelligenceFragment" />
     </fragment>
     <fragment
         android:id="@+id/logTicketFragment"
@@ -80,4 +83,9 @@
         android:name="com.colcab.fragments.ViewClosedTicketFragment"
         android:label="View Closed Ticket"
         tools:layout="@layout/fragment_view_closed_ticket"/>
+    <fragment
+        android:id="@+id/businessIntelligenceFragment"
+        android:name="com.colcab.fragments.businessIntelligenceFragment"
+        android:label="fragment_business_intelligence"
+        tools:layout="@layout/fragment_business_intelligence" />
 </navigation>
