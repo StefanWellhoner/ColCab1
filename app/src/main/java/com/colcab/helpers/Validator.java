@@ -50,4 +50,24 @@ public class Validator {
     public static boolean isFailureTypeValid(String failureType){
         return failureType != null && failureType.length() > 0;
     }
+
+    public static boolean isAmountDueValid(Double amount){
+        return amount != null;
+    }
+
+    public static boolean isRootCauseValid(String rootCause){
+        return rootCause != null && rootCause.length() > 0;
+    }
+
+    public static boolean isFeedbackValid(String feedback){
+        return feedback != null && feedback.length() > 0;
+    }
+
+    public static boolean isSatisfactionValid(int satisfactionLevel){
+        return satisfactionLevel > 0 && satisfactionLevel <= 5;
+    }
+    
+    public static boolean isSaveAsValid(String saveAs){
+        return saveAs != null && saveAs.length() > 0;
+    }
 }

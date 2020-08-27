@@ -47,7 +47,7 @@ import java.util.Map;
 
 public class FullScreenDialogFragment extends DialogFragment implements View.OnClickListener {
 
-    private TextInputLayout lblAmountDue, lblRootCause, lblClientFeedback, lblSaveAs, lblCategoryType, lblFailureType;
+    private TextInputLayout lblAmountDue, lblRootCause, lblClientFeedback, lblSaveAs, lblCategoryType, lblFailureType, lblSatisfactionLevel;
     private AutoCompleteTextView spnCategoryTypes;
     private AutoCompleteTextView spnFailureTypes;
     private AutoCompleteTextView spnCSATs;
@@ -98,6 +98,7 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         lblSaveAs = v.findViewById(R.id.lSaveAs);
         lblCategoryType = v.findViewById(R.id.lCategoryType);
         lblFailureType = v.findViewById(R.id.lFailureType);
+        lblSatisfactionLevel = v.findViewById(R.id.lSatisfactionLevel);
 
         tfAmountDue = v.findViewById(R.id.tfAmountDue);
         tfRootCause = v.findViewById(R.id.tfRootCause);
@@ -113,15 +114,59 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         btnCloseTicket.setOnClickListener(this);
     }
 
-    private boolean isValidData(Map<String, Object> data){
+    private void resetErrors(){
+        lblCategoryType.setErrorEnabled(false);
+        lblFailureType.setErrorEnabled(false);
+        lblAmountDue.setErrorEnabled(false);
+        lblRootCause.setErrorEnabled(false);
+        lblClientFeedback.setErrorEnabled(false);
+        lblSatisfactionLevel.setErrorEnabled(false);
+        lblSaveAs.setErrorEnabled(false);
+    }
+
+    private boolean isValidData(Map<String, Object> data) {
         int errorCounter = 0;
-        if (!Validator.isCategoryTypeValid(String.valueOf(data.get("categoryType")))){
+        resetErrors();
+        if (!Validator.isCategoryTypeValid(String.valueOf(data.get("categoryType")))) {
             errorCounter++;
-            lblCategoryType.setError("Please select a category");
+            lblCategoryType.setError("Please Select a Category");
         }
-        if (!Validator.isFailureTypeValid(String.valueOf(data.get("failureType")))){
+        if (!Validator.isFailureTypeValid(String.valueOf(data.get("failureType")))) {
             errorCounter++;
-            lblFailureType.setError("Please select a failure type");
+            lblFailureType.setError("Please Select a Failure type");
+        }
+        try {
+            if (!Validator.isAmountDueValid(Double.parseDouble(String.valueOf(data.get("amountDue"))))) {
+                errorCounter++;
+                lblAmountDue.setError("Please Enter an Amount due");
+            }
+        } catch (NumberFormatException ex) {
+            errorCounter++;
+            lblAmountDue.setError("Please Enter an Amount due");
+            System.out.println(ex.getMessage());
+        }
+        if (!Validator.isRootCauseValid(String.valueOf(data.get("rootCause")))) {
+            errorCounter++;
+            lblRootCause.setError("Please Enter a Root Cause");
+        }
+        if (!Validator.isFeedbackValid(String.valueOf(data.get("clientFeedBack")))) {
+            errorCounter++;
+            lblClientFeedback.setError("Please Enter Client's Feedback");
+        }
+        try {
+            if (!Validator.isSatisfactionValid(Integer.parseInt(String.valueOf(data.get("satisfactionLevel"))))) {
+                errorCounter++;
+                lblSatisfactionLevel.setError("Please Select the Client's Satisfaction Level");
+            }
+        } catch (NumberFormatException ex){
+            errorCounter++;
+            lblSatisfactionLevel.setError("Please Select the Client's Satisfaction Level");
+            System.out.println(ex.getMessage());
+        }
+
+        if (!Validator.isSaveAsValid(String.valueOf(data.get("saveAs")))) {
+            errorCounter++;
+            lblSaveAs.setError("Please Enter Save As");
         }
         return !(errorCounter > 0);
     }
@@ -145,7 +190,7 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                if (e.getMessage() != null){
+                if (e.getMessage() != null) {
                     Log.d("Firebase Error: ", e.getMessage());
                     Toast.makeText(getContext(), "An Error Occurred", Toast.LENGTH_SHORT).show();
                 }
@@ -155,7 +200,7 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
 
     }
 
-    private Map<String, Object> getData(){
+    private Map<String, Object> getData() {
         String categoryType = String.valueOf(spnCategoryTypes.getText());
         String failureType = String.valueOf(spnFailureTypes.getText());
         String amountDue = String.valueOf(tfAmountDue.getText());
@@ -164,13 +209,13 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         String satisfactionLevel = String.valueOf(spnCSATs.getText());
         String saveAs = String.valueOf(tfSaveAs.getText());
         Map<String, Object> data = new HashMap<>();
-        data.put("categoryType",categoryType);
-        data.put("failureType",failureType);
-        data.put("amountDue",amountDue);
-        data.put("rootCause",rootCause);
-        data.put("clientFeedBack",clientFeedBack);
-        data.put("satisfactionLevel",satisfactionLevel);
-        data.put("saveAs",saveAs);
+        data.put("categoryType", categoryType);
+        data.put("failureType", failureType);
+        data.put("amountDue", amountDue);
+        data.put("rootCause", rootCause);
+        data.put("clientFeedBack", clientFeedBack);
+        data.put("satisfactionLevel", satisfactionLevel);
+        data.put("saveAs", saveAs);
         return data;
     }
 
@@ -180,7 +225,7 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         switch (id) {
             case R.id.btnCloseTicket:
                 Map<String, Object> data = getData();
-                if (isValidData(data)){
+                if (isValidData(data)) {
                     callback.onActionClick(data);
                     dismiss();
                 }
