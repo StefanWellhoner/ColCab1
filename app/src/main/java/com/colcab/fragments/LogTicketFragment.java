@@ -286,22 +286,15 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
         if (view.getId() == R.id.btn_log_ticket) {
             onLogTicket();
-            //Checking if there is connection line 234
-            //connectionCheck(isConnected);
         }
     }
 
     public void connectionCheck(boolean isConnected) {
         loadingBar.setVisibility(View.VISIBLE);
-        if (isConnected) {
-            System.out.println("Connection is On");
-            //Toast.makeText(getContext(), "Stable Connection", Toast.LENGTH_LONG).show();
-        } else {
+        if (!isConnected) {
             loadingBar.setVisibility(View.GONE);
             Toast.makeText(getContext(), "No Connection and data will be populated as soon as possible!", Toast.LENGTH_LONG).show();
             //clearTextFields();
-            //Want to go back to the main fragment but this is called before the values are inserted
-            //into firebase
         }
     }
 }

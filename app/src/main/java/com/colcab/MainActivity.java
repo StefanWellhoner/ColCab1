@@ -1,5 +1,6 @@
 package com.colcab;
 
+import android.animation.Animator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -57,21 +58,20 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
     private AppBarConfiguration appBarConfig;
     private FrameLayout loadingBar;
-
     //Ticket Notification
-    private static final String CHANNEL_ONE = "Simple way of displaying";
-    private static final String CHANNEL_TWO = "Your mom";
-    private static final String CHANNEL_THREE = "Your mom AS WELL";
+    private static final String CHANNEL_ONE = "ColCab";
+    private static final String CHANNEL_TWO = "Scheduled Dates";
+    private static final String CHANNEL_THREE = "User Log in";
     private NotificationManagerCompat notificationManager;
-    //Variable referecening to firebase
+    //Variable referencing to firebase
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    //private DocumentReference ref = db.collection("tickets").document("First");
     private CollectionReference colref = db.collection("tickets");
-
     //Global variable for connection
     public static boolean isConnected;
     private TextView connectionStatus;
-
+    //Animation
+    private int shortAnimationDuration;
+    private TextView loadingView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,9 +91,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(this.<NavigationView>findViewById(R.id.nav_view), navController);
 
         loadingBar = findViewById(R.id.loadingBar);
+        //Connection
         connectionStatus = findViewById(R.id.textviewConnection);
         connectionStatus.setVisibility(View.GONE);
 
+
+        shortAnimationDuration = getResources().getInteger(
+                android.R.integer.config_longAnimTime);
         //Notification Channel
         NotificationChannel channel = new NotificationChannel(CHANNEL_ONE, CHANNEL_THREE, NotificationManager.IMPORTANCE_DEFAULT);
         channel.setDescription(CHANNEL_TWO);
@@ -112,17 +116,21 @@ public class MainActivity extends AppCompatActivity {
                 );
                 if (noConnectivity) {
                     isConnected = false;
-                    System.out.println("No Connection");
-                    Toast.makeText(context, "No Connectivity", Toast.LENGTH_SHORT).show();
-                    //loadingBar.setVisibility(View.GONE);
+                    loadingBar.setVisibility(View.GONE);
+                    connectionStatus.setAlpha(0f);
                     connectionStatus.setVisibility(View.VISIBLE);
-                    //setConnectionCheck(isConnected);
+                    //Animation
+                    connectionStatus.animate()
+                            .alpha(1f)
+                            .setDuration(shortAnimationDuration)
+                            .setListener(null);
                 } else {
                     isConnected = true;
-                    System.out.println("Connection is On");
-                    Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
-                    connectionStatus.setVisibility(View.INVISIBLE);
-                    //LogTicketFragment.connectionCheck(isConnected);
+                    connectionStatus.setVisibility(View.GONE);
+                    connectionStatus.animate()
+                            .alpha(0f)
+                            .setDuration(shortAnimationDuration)
+                            .setListener(null);
                 }
             }
         }
@@ -138,16 +146,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         //Connection Check
         IntentFilter intentFilterConn = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(connectivity, intentFilterConn);
-
         //Displaying the dates of the tickets
         colref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                String dates = "";
                 //Counter for sending multiple notification id=count
                 int count = 0;
                 //Array used to store for ID and Date from firebase
@@ -164,19 +169,11 @@ public class MainActivity extends AppCompatActivity {
                     //Storing values in array
                     theDates.add(dateScheduled);
                     uID.add(id);
-
-                    System.out.println(uID);
-                    System.out.println(theDates);
                     //Get the current date
-                    // I am using 2 date formatters and they don't have the same format for 20 August, 2020
-                    //Getting current date is tricky not using the  LocalDate formatter
-                    //Calendar cal = Calendar.getInstance();
-                    //String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.getTime());
                     Timestamp currentDate = Timestamp.now();
                     Date cur = currentDate.toDate();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH);
                     String dates2 = sdf.format(cur);
-                    //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
                     //Format for the firebase date
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
                     //Set the format of the dates
@@ -184,11 +181,9 @@ public class MainActivity extends AppCompatActivity {
                     LocalDate date2 = LocalDate.parse(dateScheduled, formatter);
                     //Get the number between dates <0>
                     long daysBetween = ChronoUnit.DAYS.between(date1, date2);
-                    //Date strDate = simpleDateFormat.parse(datum);
                     count++;
                     // Getting rid of the negative value
                     // Only displaying notification of tickets if the days between is smaller than 5
-                    //if(daysBetween > 0){ //example
                     if(daysBetween > 0 && daysBetween < 5){
                         //Send notification
                         System.out.println(daysBetween);
@@ -221,13 +216,11 @@ public class MainActivity extends AppCompatActivity {
                                 .addLine("Customer: " + customer)
                                 .addLine("Casemodel: " + caseModel)
                                 .addLine(daysLeft + numDays))
-                        //.setContentText(toString(numDays))
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                         .setColor(ContextCompat.getColor(this, R.color.colorSecondary))
                         .setContentIntent(contentIntent);
-        //Adding button
-        //.addAction(R.mipmap.ic_launcher, "View Ticket", activtyIntent);
+                        //.addAction(fragment_scheduled_tickets, false);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
 
