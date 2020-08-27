@@ -56,11 +56,11 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
     private static AutoCompleteTextView spnContractors;
     private static TextInputEditText tfDatePicker;
     private ArrayList<String> contractors;
-    private ArrayList<String> contractorIDs;
+    private static ArrayList<String> contractorIDs;
     private static ArrayAdapter<String> conAdapter;
     private FirebaseFirestore db;
-    private String selectedDate;
-    private DocumentReference selectedContractor;
+    private static String selectedDate;
+    private static DocumentReference selectedContractor;
 
     public ViewTicketAdminFragment() {
     }
@@ -237,7 +237,7 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
         final String scheduledDate = data.get("scheduledDate").toString();
         DocumentReference reference = (DocumentReference)data.get("contractor");
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -250,8 +250,9 @@ public class ViewTicketAdminFragment extends Fragment implements View.OnClickLis
                         String contractor = contractorName.get("firstName") + " " + contractorName.get("lastName") + " - " + document.get("company");
 
                         tfDatePicker.setText(scheduledDate);
-                        System.out.println(conAdapter.getPosition(contractor));
                         spnContractors.setText(spnContractors.getAdapter().getItem(conAdapter.getPosition(contractor)).toString(), false);
+                        selectedDate = scheduledDate;
+                        selectedContractor = db.collection("contractors").document(contractorIDs.get(conAdapter.getPosition(contractor)));
                         enableSchedule();
                     }else {
 
