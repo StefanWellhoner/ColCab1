@@ -39,6 +39,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         navController = Navigation.findNavController(view);
     }
 
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

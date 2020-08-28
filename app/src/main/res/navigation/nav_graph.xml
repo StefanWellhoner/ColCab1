@@ -5,6 +5,19 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
     <fragment
+        android:id="@id/action_SignUpFragment_to_MainFragment"
+        android:name="com.colcab.fragments.MainFragment"
+        android:label="@string/button_signup"
+        tools:layout="@layout/fragment_sign_up">
+         <action
+             android:id="@+id/action_SignUpFragment_to_MainFragment"
+             app:destination="@id/mainFragment"
+             app:enterAnim="@anim/slide_in_right"
+             app:exitAnim="@anim/slide_out_left"
+             app:popEnterAnim="@anim/slide_in_left"
+             app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
         android:id="@id/mainFragment"
         android:name="com.colcab.fragments.MainFragment"
         android:label="@string/nav_home"
