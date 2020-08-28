@@ -1,5 +1,10 @@
 package com.colcab.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,9 +19,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.colcab.MainActivity;
 import com.colcab.R;
 import com.colcab.helpers.Validator;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,11 +32,10 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.colcab.MainActivity.isConnected;
 
 public class LogTicketFragment extends Fragment implements View.OnClickListener {
 
@@ -210,7 +214,6 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         if (!isTicketInfoValid(customer, serialNum, caseModel, caseDesc, reqBy, customerPO)) {
             reqBy = reqBy.trim();
             Map<String, Object> fullName = splitFullName(reqBy);
-
             // Add entered text to HashMap for Firebase
             Map<String, Object> ticketData = new HashMap<>();
             ticketData.put("loggedDate", getCurrentDate());
@@ -222,9 +225,10 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
             ticketData.put("requestedBy", fullName);
             ticketData.put("customerPO", customerPO);
             ticketData.put("scheduled", false);
-
             // Create database instance
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+            //check connection
+            connectionCheck(isConnected);
             // Insert data from user into "Tickets" collection
             db.collection("tickets").add(ticketData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
@@ -250,6 +254,7 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
             loadingBar.setVisibility(View.GONE);
             Toast.makeText(getContext(), "Please fill in all information", Toast.LENGTH_LONG).show();
         }
+        //No closing connection?
     }
 
     private void clearTextFields(){
@@ -281,6 +286,15 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
         if (view.getId() == R.id.btn_log_ticket) {
             onLogTicket();
+        }
+    }
+
+    public void connectionCheck(boolean isConnected) {
+        loadingBar.setVisibility(View.VISIBLE);
+        if (!isConnected) {
+            loadingBar.setVisibility(View.GONE);
+            Toast.makeText(getContext(), "No Connection and data will be populated as soon as possible!", Toast.LENGTH_LONG).show();
+            //clearTextFields();
         }
     }
 }

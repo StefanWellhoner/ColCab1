@@ -44,17 +44,34 @@
                 android:layout_centerInParent="true"
                 android:alpha="0.4"
                 android:clickable="true"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:background="@color/colorHint">
 
                 <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:indeterminate="true"
                     android:indeterminateTint="@color/colorPrimary"
                     android:layout_gravity="center" />
             </FrameLayout>
+
+            <TextView
+                android:id="@+id/textviewConnection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="-6dp"
+                android:background="@color/colorError"
+                android:animateLayoutChanges="true"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Not Connected"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </RelativeLayout>
+
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
