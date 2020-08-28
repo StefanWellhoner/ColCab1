@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         final Set<Integer> topLevelDestinations = new ArraySet<>();
         topLevelDestinations.add(R.id.mainFragment);
         topLevelDestinations.add(R.id.addContractorFragment);
+        topLevelDestinations.add(R.id.businessIntelligenceFragment);
 
         appBarConfig = new AppBarConfiguration.Builder(topLevelDestinations).setDrawerLayout(drawerLayout).build();
 

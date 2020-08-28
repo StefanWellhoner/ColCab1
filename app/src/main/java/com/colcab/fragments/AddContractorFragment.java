@@ -148,7 +148,7 @@ public class AddContractorFragment extends Fragment implements View.OnClickListe
     }
 
     /**
-     * Map<String, String> splitFullname(String) a method that splits a fullname into 2 parts with key value pair 'firstName' and 'lastName'
+     * Map<String, String> splitFullName(String) a method that splits a fullName into 2 parts with key value pair 'firstName' and 'lastName'
      *
      * @param fullName full name of a person
      * @return Map<Key, Value>

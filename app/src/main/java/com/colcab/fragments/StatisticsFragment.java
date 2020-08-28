@@ -30,10 +30,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class businessIntelligenceFragment extends Fragment {
+public class StatisticsFragment extends Fragment {
 
 
-    public businessIntelligenceFragment() {
+    public StatisticsFragment() {
         // Required empty public constructor
     }
 

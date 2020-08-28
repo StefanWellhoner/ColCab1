@@ -10,12 +10,12 @@
             android:icon="@drawable/ic_log_ticket_24"
             android:title="@string/add_contractor" />
         <item
-            android:id="@+id/openTicketsFragment"
-            android:icon="@drawable/ic_open_tickets_24"
-            android:title="@string/nav_open_tickets" />
+            android:id="@+id/businessIntelligenceFragment"
+            android:icon="@drawable/ic_baseline_bar_chart_24"
+            android:title="@string/statistics" />
         <item
-            android:id="@+id/closedTicketsFragment"
-            android:icon="@drawable/ic_closed_tickets_24"
-            android:title="@string/nav_closed_tickets" />
+            android:id="@+id/exit"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="@string/nav_exit" />
     </group>
 </menu>

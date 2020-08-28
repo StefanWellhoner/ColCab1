@@ -5,19 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@id/action_SignUpFragment_to_MainFragment"
-        android:name="com.colcab.fragments.MainFragment"
-        android:label="@string/button_signup"
-        tools:layout="@layout/fragment_sign_up">
-         <action
-             android:id="@+id/action_SignUpFragment_to_MainFragment"
-             app:destination="@id/mainFragment"
-             app:enterAnim="@anim/slide_in_right"
-             app:exitAnim="@anim/slide_out_left"
-             app:popEnterAnim="@anim/slide_in_left"
-             app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
         android:id="@id/mainFragment"
         android:name="com.colcab.fragments.MainFragment"
         android:label="@string/nav_home"
@@ -56,7 +43,7 @@
         android:label="@string/nav_log_ticket"
         tools:layout="@layout/fragment_log_ticket" />
     <fragment
-        android:id="@id/openTicketsFragment"
+        android:id="@+id/openTicketsFragment"
         android:name="com.colcab.fragments.OpenTicketsFragment"
         android:label="@string/nav_open_tickets"
         tools:layout="@layout/fragment_open_tickets">
@@ -69,7 +56,7 @@
             app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
-        android:id="@id/closedTicketsFragment"
+        android:id="@+id/closedTicketsFragment"
         android:name="com.colcab.fragments.ClosedTicketsFragment"
         android:label="@string/nav_closed_tickets"
         tools:layout="@layout/fragment_closed_tickets" >
@@ -97,8 +84,8 @@
         android:label="View Closed Ticket"
         tools:layout="@layout/fragment_view_closed_ticket"/>
     <fragment
-        android:id="@+id/businessIntelligenceFragment"
-        android:name="com.colcab.fragments.businessIntelligenceFragment"
-        android:label="fragment_business_intelligence"
+        android:id="@id/businessIntelligenceFragment"
+        android:name="com.colcab.fragments.StatisticsFragment"
+        android:label="@string/statistics"
         tools:layout="@layout/fragment_business_intelligence" />
 </navigation>
