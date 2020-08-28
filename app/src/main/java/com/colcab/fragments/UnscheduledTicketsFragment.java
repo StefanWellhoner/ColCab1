@@ -37,7 +37,7 @@ public class UnscheduledTicketsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_unscheduled_tickets, container, false);
-        Query query = ticketsRef.orderBy("loggedDate", Query.Direction.DESCENDING).whereEqualTo("scheduled", false);
+        Query query = ticketsRef.orderBy("loggedDate", Query.Direction.ASCENDING).whereEqualTo("scheduled", false);
         FirestoreRecyclerOptions<Ticket> options = new FirestoreRecyclerOptions.Builder<Ticket>().setQuery(query, Ticket.class).build();
         adapter = new UnscheduledTicketAdapter(options);
         recyclerView.setHasFixedSize(true);

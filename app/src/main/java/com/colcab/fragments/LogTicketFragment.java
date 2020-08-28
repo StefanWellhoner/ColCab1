@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.colcab.MainActivity;
@@ -33,7 +32,6 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -214,6 +212,7 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         String customerPO = tfCustomerPO.getText().toString();
 
         if (!isTicketInfoValid(customer, serialNum, caseModel, caseDesc, reqBy, customerPO)) {
+            reqBy = reqBy.trim();
             Map<String, Object> fullName = splitFullName(reqBy);
             // Add entered text to HashMap for Firebase
             Map<String, Object> ticketData = new HashMap<>();
@@ -245,6 +244,7 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
                 // OnFailure => Error has occurred (TAG: Firebase Error:)
                 public void onFailure(@NonNull Exception e) {
                     Log.d("Firebase Error: ", e.getMessage());
+                    Toast.makeText(getContext(), "An Error Occurred", Toast.LENGTH_SHORT).show();
                     clearTextFields();
                     loadingBar.setVisibility(View.GONE);
                 }

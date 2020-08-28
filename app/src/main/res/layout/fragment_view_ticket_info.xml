@@ -62,8 +62,8 @@
                     android:id="@+id/tfCaseModel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
                     android:enabled="false"
+                    android:inputType="text"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,8 +79,8 @@
                     android:id="@+id/tfCaseDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
                     android:enabled="false"
+                    android:inputType="text"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,8 +96,8 @@
                     android:id="@+id/tfRequestedBy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
                     android:enabled="false"
+                    android:inputType="text"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,8 +113,8 @@
                     android:id="@+id/tfCustomerPO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
                     android:enabled="false"
+                    android:inputType="text"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,13 +139,22 @@
                 android:layout_height="64dp"
                 android:text="@string/btnSave"
                 android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                style="@style/Widget.ColCab.Button"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:text="@string/btnCancel"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabEdit"
         style="@style/Widget.ColCab.Button.Fab"
-        android:layout_gravity="end|bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_edit_24"/>
+        android:layout_gravity="end|bottom"
+        app:srcCompat="@drawable/ic_edit_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

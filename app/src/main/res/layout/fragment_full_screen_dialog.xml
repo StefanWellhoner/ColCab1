@@ -57,6 +57,7 @@
             tools:context=".fragments.FullScreenDialogFragment">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lCategoryType"
                 style="@style/Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lFailureType"
                 style="@style/Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +100,7 @@
                     android:id="@+id/tfAmountDue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,6 +137,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lSatisfactionLevel"
                 style="@style/Widget.ColCab.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

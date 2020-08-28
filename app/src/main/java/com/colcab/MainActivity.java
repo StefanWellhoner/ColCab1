@@ -12,7 +12,6 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.ArraySet;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
