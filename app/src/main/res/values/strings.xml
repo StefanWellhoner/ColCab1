@@ -112,17 +112,6 @@
     <string name="country_region">Country/Region</string>
     <string name="add_contractor">Add Contractor</string>
     <string name="scheduled_date">Scheduled Date</string>
-    <string name="store">Store Name</string>
-    <string name="description">Description</string>
-
-
-    <string name="date_logged">Date Logged</string>
-
-    <string name="date_closed">Date Closed</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="colcab_logo">ColCab Logo</string>
-    // Placeholder Card View
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="warranty">
         <item>IN</item>
         <item>OUT</item>
@@ -148,7 +137,6 @@
         <item>Category Type 2</item>
         <item>Category Type 3</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="spnCATSs">
         <item>Satisfaction level</item>
         <item>1</item>
@@ -165,6 +153,4 @@
 
     // Content Description
     <string name="colcab_logo">ColCab Logo</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
