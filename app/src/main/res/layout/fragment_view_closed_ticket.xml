@@ -20,8 +20,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Customer:"
-                android:textStyle="bold"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvCustomer"
@@ -32,8 +33,79 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Customer PO:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/tvCustomerPo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Requested by:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/tvReqBy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Case Model:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/tvCaseModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Serial Number:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/tvSerialNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category Type:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/tvCategorytype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Description:"
                 android:textStyle="bold"
+                android:textSize="18sp"
                 android:textAlignment="center"/>
 
             <TextView
@@ -47,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:text="Root Cause:"
                 android:textStyle="bold"
+                android:textSize="18sp"
                 android:textAlignment="center"/>
 
             <TextView
@@ -58,8 +131,23 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Warranty:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/tvWarranty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Logged:"
                 android:textStyle="bold"
+                android:textSize="18sp"
                 android:textAlignment="center"/>
 
             <TextView
@@ -68,11 +156,13 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"/>
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Closed:"
                 android:textStyle="bold"
+                android:textSize="18sp"
                 android:textAlignment="center"/>
 
             <TextView

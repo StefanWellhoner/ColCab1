@@ -100,6 +100,9 @@ public class ViewOpenTicketFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 if (document != null && document.exists()) {
                     Map<String, Object> data = document.getData();
+                    if (data.get("scheduled").toString().equals("true")) {
+                        ViewTicketAdminFragment.fillFields(data);
+                    }
                     ViewTicketInfoFragment.fillFields(data);
                 }
             }

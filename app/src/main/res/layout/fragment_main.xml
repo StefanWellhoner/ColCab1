@@ -28,6 +28,13 @@
         android:layout_height="80dp"
         android:text="@string/btnClosedTickets" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_BI"
+        style="@style/Widget.ColCab.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Business Intelligence" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
