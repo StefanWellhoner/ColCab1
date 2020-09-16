@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     //Animation
     private int shortAnimationDuration;
     private TextView loadingView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         manager.createNotificationChannel(channel);
         notificationManager = NotificationManagerCompat.from(this);
     }
+
     //Connectivity Check
     public BroadcastReceiver connectivity = new BroadcastReceiver() {
         @Override
@@ -171,26 +173,30 @@ public class MainActivity extends AppCompatActivity {
                     String dates2 = sdf.format(cur);
                     //Format for the firebase date
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-                    //Set the format of the dates
-                    LocalDate date1 = LocalDate.parse(dates2, formatter);
-                    LocalDate date2 = LocalDate.parse(dateScheduled, formatter);
-                    //Get the number between dates <0>
-                    long daysBetween = ChronoUnit.DAYS.between(date1, date2);
-                    count++;
-                    // Getting rid of the negative value
-                    // Only displaying notification of tickets if the days between is smaller than 5
-                    if(daysBetween > 0 && daysBetween < 5){
-                        //Send notification
-                        System.out.println(daysBetween);
-                        displayNotification(daysBetween, id, customer, caseModel, count,false);
-                    }
-                    if (daysBetween < 0){
-                        displayNotification(daysBetween, id, customer, caseModel, count,true);
+                    if (dateScheduled != null) {
+                        //Set the format of the dates
+                        LocalDate date1 = LocalDate.parse(dates2, formatter);
+                        LocalDate date2 = LocalDate.parse(dateScheduled, formatter);
+                        //Get the number between dates <0>
+
+                        long daysBetween = ChronoUnit.DAYS.between(date1, date2);
+                        count++;
+                        // Getting rid of the negative value
+                        // Only displaying notification of tickets if the days between is smaller than 5
+                        if (daysBetween > 0 && daysBetween < 5) {
+                            //Send notification
+                            System.out.println(daysBetween);
+                            displayNotification(daysBetween, id, customer, caseModel, count, false);
+                        }
+                        if (daysBetween < 0) {
+                            displayNotification(daysBetween, id, customer, caseModel, count, true);
+                        }
                     }
                 }
             }
         });
     }
+
     //Displaying tickets smaller than 5 days in notification
     private void displayNotification(long numDays, String id, String customer, String caseModel, int count, boolean overdue) {
         //On click notification action
@@ -198,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         Intent activityIntents = new Intent(this, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntents, 0);
         String daysLeft = overdue ? "Days overdue: " : "Days left: ";
-        if (overdue){
+        if (overdue) {
             numDays = numDays * -1;
         }
         //Single notification
@@ -215,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                         .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                         .setColor(ContextCompat.getColor(this, R.color.colorSecondary))
                         .setContentIntent(contentIntent);
-                        //.addAction(fragment_scheduled_tickets, false);
+        //.addAction(fragment_scheduled_tickets, false);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
 
