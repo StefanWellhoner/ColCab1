@@ -200,9 +200,13 @@ public class MainActivity extends AppCompatActivity {
     //Displaying tickets smaller than 5 days in notification
     private void displayNotification(long numDays, String id, String customer, String caseModel, int count, boolean overdue) {
         //On click notification action
-        //Intent to view tickets but on main
+        //Intent to view tickets
         Intent activityIntents = new Intent(this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntents, 0);
+        activityIntents.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //Set Fragment, problem might be here
+        activityIntents.putExtra("layout","fragment_open_tickets.xml");
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntents, PendingIntent.FLAG_UPDATE_CURRENT);
+        //Ticket filter
         String daysLeft = overdue ? "Days overdue: " : "Days left: ";
         if (overdue) {
             numDays = numDays * -1;
@@ -220,8 +224,11 @@ public class MainActivity extends AppCompatActivity {
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                         .setColor(ContextCompat.getColor(this, R.color.colorSecondary))
-                        .setContentIntent(contentIntent);
-        //.addAction(fragment_scheduled_tickets, false);
+                        .setAutoCancel(true)
+                        .setOnlyAlertOnce(true)
+                        //.setContentIntent(contentIntent)
+                        //This is where I want to navigate to the fragment
+                        .addAction(R.mipmap.ic_launcher,"View Ticket", contentIntent);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
 
