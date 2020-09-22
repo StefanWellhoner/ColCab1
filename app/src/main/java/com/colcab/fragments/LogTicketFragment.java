@@ -1,10 +1,5 @@
 package com.colcab.fragments;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,7 +16,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.colcab.MainActivity;
 import com.colcab.R;
 import com.colcab.helpers.Validator;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,7 +33,7 @@ import static com.colcab.MainActivity.isConnected;
 
 public class LogTicketFragment extends Fragment implements View.OnClickListener {
 
-    private TextInputLayout lCustomer, lSerialNumber, lCaseModel, lCaseDesc, lReqBy, lCustomerPO;
+    private TextInputLayout lCustomer, lWarranty, lSerialNumber, lCaseModel, lCaseDesc, lReqBy, lCustomerPO;
     private TextInputEditText tfCustomer, tfSerialNum, tfCaseModel, tfCaseDesc, tfRequestedBy, tfCustomerPO;
     private AutoCompleteTextView spnWarranty;
     private FrameLayout loadingBar;
@@ -61,6 +55,13 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         loadingBar = getActivity().findViewById(R.id.loadingBar);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.btn_log_ticket) {
+            onLogTicket();
+        }
+    }
+
     /**
      * void initComponents()
      * Initializes the components to grab data from them
@@ -77,6 +78,7 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
 
         // Layouts for setting errors
         lCustomer = v.findViewById(R.id.lCustomer);
+        lWarranty = v.findViewById(R.id.lWarranty);
         lSerialNumber = v.findViewById(R.id.lSerialNumber);
         lCaseModel = v.findViewById(R.id.lCaseModel);
         lCaseDesc = v.findViewById(R.id.lCaseDesc);
@@ -167,11 +169,15 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
      * @param customerPO customer purchase order
      * @return valid whether all the fields are filled with valid information
      */
-    private boolean isTicketInfoValid(String customer, String serialNum, String caseModel, String caseDesc, String reqBy, String customerPO) {
+    private boolean isTicketInfoValid(String customer, String warranty, String serialNum, String caseModel, String caseDesc, String reqBy, String customerPO) {
         int errorCounter = 0;
         if (!Validator.isCustomerValid(customer)) {
             errorCounter++;
             lCustomer.setError("Customer can't be empty");
+        }
+        if (warranty.isEmpty()) {
+            errorCounter++;
+            lWarranty.setError("Select Type of Warranty");
         }
         if (!Validator.isSerialNumberValid(serialNum)) {
             errorCounter++;
@@ -210,8 +216,8 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         String caseDesc = tfCaseDesc.getText().toString();
         String reqBy = tfRequestedBy.getText().toString();
         String customerPO = tfCustomerPO.getText().toString();
-
-        if (!isTicketInfoValid(customer, serialNum, caseModel, caseDesc, reqBy, customerPO)) {
+        clearErrors();
+        if (!isTicketInfoValid(customer, warranty, serialNum, caseModel, caseDesc, reqBy, customerPO)) {
             reqBy = reqBy.trim();
             Map<String, Object> fullName = splitFullName(reqBy);
             // Add entered text to HashMap for Firebase
@@ -250,23 +256,23 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
                 }
             });
         } else {
-            clearTextFields();
             loadingBar.setVisibility(View.GONE);
             Toast.makeText(getContext(), "Please fill in all information", Toast.LENGTH_LONG).show();
         }
         //No closing connection?
     }
 
-    private void clearTextFields(){
+    private void clearTextFields() {
         tfCustomer.setText("");
         tfSerialNum.setText("");
         tfCaseModel.setText("");
         tfCaseDesc.setText("");
         tfRequestedBy.setText("");
         tfCustomerPO.setText("");
+        spnWarranty.setText("");
     }
 
-    private Map<String, Object> splitFullName(String fName){
+    private Map<String, Object> splitFullName(String fName) {
         String lastName = "";
         String firstName = "";
         if (fName.split("\\w+").length > 1) {
@@ -282,13 +288,6 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
         return fullName;
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.btn_log_ticket) {
-            onLogTicket();
-        }
-    }
-
     public void connectionCheck(boolean isConnected) {
         loadingBar.setVisibility(View.VISIBLE);
         if (!isConnected) {
@@ -296,5 +295,15 @@ public class LogTicketFragment extends Fragment implements View.OnClickListener 
             Toast.makeText(getContext(), "No Connection and data will be populated as soon as possible!", Toast.LENGTH_LONG).show();
             //clearTextFields();
         }
+    }
+
+    private void clearErrors() {
+        lCustomer.setError(null);
+        lWarranty.setError(null);
+        lSerialNumber.setError(null);
+        lCaseModel.setError(null);
+        lCaseDesc.setError(null);
+        lReqBy.setError(null);
+        lCustomerPO.setError(null);
     }
 }

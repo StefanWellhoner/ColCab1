@@ -148,7 +148,8 @@
                     android:id="@+id/spnCSAT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:enabled="false"
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

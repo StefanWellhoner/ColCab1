@@ -112,6 +112,9 @@ public class FullScreenDialogFragment extends DialogFragment implements View.OnC
         // Set onClick listeners
         close.setOnClickListener(this);
         btnCloseTicket.setOnClickListener(this);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.spnCATSs));
+        spnCSATs.setAdapter(adapter);
     }
 
     private void resetErrors(){

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -72,6 +73,8 @@ public class ViewTicketInfoFragment extends Fragment implements View.OnClickList
         btnSave.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         loadingBar = getActivity().findViewById(R.id.loadingBar);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.warranty));
+        spnWarranty.setAdapter(adapter);
         return view;
     }
 
@@ -95,7 +98,7 @@ public class ViewTicketInfoFragment extends Fragment implements View.OnClickList
         tfCaseDesc.setText(String.valueOf(data.get("caseDescription")));
         tfReqBy.setText(requestedBy);
         tfCustPo.setText(String.valueOf(data.get("customerPO")));
-        spnWarranty.setText(String.valueOf(data.get("warranty")));
+        spnWarranty.setText(String.valueOf(data.get("warranty")),false);
     }
 
     @Override
@@ -176,25 +179,34 @@ public class ViewTicketInfoFragment extends Fragment implements View.OnClickList
         return errorCounter == 0;
     }
 
+    private Map<String, Object> splitFullName(String fName){
+        String lastName = "";
+        String firstName = "";
+        if (fName.split("\\w+").length > 1) {
+
+            lastName = fName.substring(fName.lastIndexOf(" ") + 1);
+            firstName = fName.substring(0, fName.lastIndexOf(' '));
+        } else {
+            firstName = fName;
+        }
+        Map<String, Object> fullName = new HashMap<>();
+        fullName.put("firstName", firstName);
+        fullName.put("lastName", lastName);
+        return fullName;
+    }
+
     private void updateFields() {
         loadingBar.setVisibility(View.VISIBLE);
-        String fullname = tfReqBy.getText().toString();
+        String fullname = tfReqBy.getText().toString().trim();
 
-        //@TODO split FullName method
-
-        String reqName = fullname.substring(0, fullname.indexOf(" "));
-        String reqSurname = fullname.substring(fullname.indexOf(" ") + 1);
-
-        HashMap<String, Object> requestedBy = new HashMap<>();
-        requestedBy.put("firstName", reqName);
-        requestedBy.put("lastName", reqSurname);
+        Map<String, Object> nameSplit = splitFullName(fullname);
 
         Map<String, Object> ticket = new HashMap<>();
         ticket.put("customer", tfCustomer.getText().toString());
         ticket.put("serialNumber", tfSerialNo.getText().toString());
         ticket.put("caseModel", tfCaseModel.getText().toString());
         ticket.put("caseDescription", tfCaseDesc.getText().toString());
-        ticket.put("requestedBy", requestedBy);
+        ticket.put("requestedBy", nameSplit);
         ticket.put("customerPO", tfCustPo.getText().toString());
         ticket.put("warranty", spnWarranty.getText().toString());
 
