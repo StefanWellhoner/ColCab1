@@ -53,4 +53,12 @@
         <item name="tint">@color/colorWhite</item>
         <item name="android:layout_margin">16dp</item>
     </style>
+
+<!--    TextView Styles-->
+    <style name="Widget.ColCab.TextView.Statistics" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
 </resources>
