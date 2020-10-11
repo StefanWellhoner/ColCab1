@@ -15,17 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="260dp" />
 
-        <com.github.mikephil.charting.charts.PieChart
+        <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/chart1"
             android:layout_width="match_parent"
             android:layout_height="260dp" />
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/chart2"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
             android:layout_width="match_parent"
             android:layout_height="260dp" />
 
-        <com.github.mikephil.charting.charts.PieChart
+        <com.github.mikephil.charting.charts.RadarChart
             android:id="@+id/chart3"
             android:layout_width="match_parent"
             android:layout_height="260dp" />
